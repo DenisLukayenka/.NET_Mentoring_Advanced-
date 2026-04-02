@@ -1,0 +1,42 @@
+Metrics:
++------------------+----------------+-----------+-----------+-----------+--------+-----------------+------------+
+| concurrent_users | total_requests | mean_ms    | p95_ms    | p99_ms    | rps    | failed_requests | duration_s |
++------------------+----------------+-----------+-----------+-----------+--------+-----------------+------------+
+| 1                | 3590           | 21.67     | 12.48     | 29.50     | 119.70 | 0               | 30.0       |
+| 10               | 2954           | 275.62    | 51.26     | 76.22     | 98.50  | 0               | 30.0       |
+| 50               | 2882           | 1469.89   | 186.50    | 68812.80  | 96.10  | 0               | 30.0       |
+| 100              | 2453           | 2863.59   | 5373.95   | 60915.71  | 81.80  | 0               | 30.0       |
+| 500              | 3487           | 9274.34   | 67502.08  | 67829.76  | 108.30 | 237             | 30.0       |
++------------------+----------------+-----------+-----------+-----------+--------+-----------------+------------+
+
+Opened questions:
+1. NFR Mapping – Identify which metrics from your results of load tests execution are related to the following NFRs:
+  Scalability  -- concurrent_users, total_requests, avg_ms, p95_ms, p_99ms, rps
+  Availability -- duration_s, (failed_requests, total_requests -- to understand approximate downtime)
+  Reliability  -- total_requests, failed_requests, duration_s
+
+2. Design recommendation – Assume that, there is a real system under load of 500 concurrent users (almost like in sample above with Server and Test Runner), what design proposal or change you could recommend?
+
+Observations per metrics:
+- Mean response time increases dramatically:
+  1-10 users: ~12 times
+  1-500 users: ~420 times
+- p99, p95 are much bigger than mean time from 50 concurrent users.
+  50 users: p99/mean = 46 times.
+- RPS never exceed 120.
+- 500 concurrent users is the treshold when the system works reliably.
+
+Design recommendations:
+1. Caching.
+As an optimization option for the end user or API, caching can be used either in the form of response headers for the API or on the client side.
+
+2. Rate limiting.
+The number of requests the service can handle can be configured beforehand and defined publicly.
+Execution of all requests above the limit may be stopped immediately, e.g., by returning a 429 response status code.
+In that case it will be the client’s responsibility to retry the request.
+It is widely used in public APIs, e.g., in Amazon services.
+
+3. Horizontal scaling.
+If other options aren't enough or we expect further growth in service usage, i would consider horizontal scaling depending on unique users number.
+- If we don't expect further growth in popularity, the threshold may be slightly below 500.
+- If performance and reliability are crucial, the threshold should be around 50 users, as at this point p99 shows degradation.
