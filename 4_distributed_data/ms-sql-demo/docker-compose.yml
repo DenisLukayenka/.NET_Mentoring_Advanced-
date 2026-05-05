@@ -1,0 +1,17 @@
+version: '3.9'
+
+services:
+  mssql:
+    # Build from the local Dockerfile
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: mssql2022-custom:1.0
+    container_name: mssql2022
+    ports:
+      - "1433:1433"
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "Str0ng!Passw0rd2026"
+    volumes:
+      - ./init-db:/init-db
