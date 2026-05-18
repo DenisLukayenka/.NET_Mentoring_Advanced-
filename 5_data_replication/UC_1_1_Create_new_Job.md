@@ -26,7 +26,7 @@ Affected models:
 - Active: boolean (1 byte)
 - NextExecutionDate: DateTime (8 bytes)
 
-Max size of JobDefinition: 771 bytes.
+Size of JobDefinition: 774 bytes.
 
 ##### JobDetails
 
@@ -46,7 +46,7 @@ Max size of JobDetail: 1107 bytes.
 
 - **Expected data volume** (number of records, data size in GB)
   - 1 million records
-  - Raw Data size: (771 + 1107 bytes) \* 1_000_000 = ~1.7 GB
+  - Raw Data size: (774 + 1107 bytes) \* 1_000_000 = ~1.7 GB
   - MongoDB overhead + indexes: ~0.6 GB
   - Oplog for replication: ~1 GB
   - Total size: ~3.3 GB
@@ -56,16 +56,17 @@ Max size of JobDetail: 1107 bytes.
   - Number of modified jobs: 1_000_000 \* 0.05 = 50_000 jobs.
   - Seconds per day = 86_400
 
-  - Number of job requests per second: ~1
+  - Number of job requests per second: 50_000 / 86_400 = ~1
 
 - **Consistency requirements** (strong or eventual consistency)
-  - Strong consistency with the replica.
+  - Strong consistency on the primary database. Azure DocumentDB uses synchronous replication between primary and standby shards within a region, guaranteeing zero data loss and always-fresh data on failover.
+  - Eventual consistency with the cross-region replica. Cross-region replication is asynchronous and cannot be configured otherwise — write confirmation is returned before replication to the replica completes. Some data may not yet be replicated at the time of failover promotion.
 
 - **Availability requirements** (uptime expectations, acceptable downtime)
   - Azure DocumentDB SLA: 99.995%
 
 - **Geographic distribution** (single region or multi-region deployment)
-  - Multi-region deployment with the primary instance in one region and a read replica in another, allowing failover to the read replica if the primary fails.
+  - Multi-region deployment with the primary instance in one region and a read replica in another. Failover to the replica must be initiated manually in case of a primary region outage.
 
 ---
 
