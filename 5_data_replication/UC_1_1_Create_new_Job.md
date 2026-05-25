@@ -47,9 +47,8 @@ Max size of JobDetail: 1107 bytes.
 - **Expected data volume** (number of records, data size in GB)
   - 1 million records
   - Raw Data size: (774 + 1107 bytes) \* 1_000_000 = ~1.7 GB
-  - MongoDB overhead + indexes: ~0.6 GB
-  - Oplog for replication: ~1 GB
-  - Total size: ~3.3 GB
+  - MongoDB overhead + indexes: ~30% = ~0.5 GB
+  - Total size: ~2.2 GB
 
 - **Expected load** (read/write requests per second)
   Assuming 5% of the jobs are modified/created throughout the day:
