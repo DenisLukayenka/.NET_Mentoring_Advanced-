@@ -28,10 +28,10 @@ variable "resource_group_name" {
   description = "Name of the resource group to deploy into."
 }
 
-variable "admin_login" {
+variable "admin_username" {
   type        = string
   default     = "adminuser"
-  description = "Administrator login name for the MongoDB cluster."
+  description = "Administrator username for the MongoDB cluster."
 }
 
 variable "admin_password" {
@@ -42,6 +42,6 @@ variable "admin_password" {
 
 variable "storage_size_in_gb" {
   type        = number
-  default     = 32
+  default     = "32"
   description = "Storage size in GB per shard."
 }

@@ -43,7 +43,7 @@ resource "azurerm_cosmosdb_cassandra_table" "job_outputs" {
   name                  = "job_outputs"
   cassandra_keyspace_id = azurerm_cosmosdb_cassandra_keyspace.scheduler[count.index].id
 
-  default_ttl_seconds = var.job_outputs_ttl_seconds
+  default_ttl = var.job_outputs_ttl_seconds
 
   schema {
     column {
