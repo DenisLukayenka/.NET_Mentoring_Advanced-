@@ -43,7 +43,7 @@ resource "azurerm_cosmosdb_sql_container" "jobs" {
   database_name       = azurerm_cosmosdb_sql_database.scheduler[count.index].name
 
   partition_key_paths   = ["/JobDefinitionId"]
-  partition_key_version = 1
+  partition_key_version = 2
 
   unique_key {
     paths = ["/JobDefinitionId", "/ScheduledAt"]

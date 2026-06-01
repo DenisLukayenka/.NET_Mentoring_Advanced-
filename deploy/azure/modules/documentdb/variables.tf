@@ -42,6 +42,22 @@ variable "admin_password" {
 
 variable "storage_size_in_gb" {
   type        = number
-  default     = "32"
+  default     = 32
   description = "Storage size in GB per shard."
+}
+
+variable "compute_tier" {
+  type        = string
+  default     = "M25"
+  description = "Compute tier for the MongoDB cluster (e.g. M25, M30, M40)."
+}
+
+variable "allowed_ip_ranges" {
+  type = list(object({
+    name     = string
+    start_ip = string
+    end_ip   = string
+  }))
+  default     = []
+  description = "Additional IP ranges to allow through the MongoDB cluster firewall."
 }
