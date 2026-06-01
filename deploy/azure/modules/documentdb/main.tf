@@ -1,0 +1,41 @@
+resource "azurerm_cosmosdb_mongo_cluster" "primary" {
+  count               = var.resource_count
+  name                = "docdb-${var.project_name}-${var.env}-primary"
+  resource_group_name = var.resource_group_name
+  location            = var.location
+
+  administrator_login    = var.admin_login
+  administrator_password = var.admin_password
+
+  compute_tier           = "M25"
+  high_availability_mode = "Disabled"
+  shard_count            = 1
+  storage_size_in_gb     = var.storage_size_in_gb
+}
+
+resource "azurerm_cosmosdb_mongo_cluster" "replica" {
+  count               = var.resource_count
+  name                = "docdb-${var.project_name}-${var.env}-replica"
+  resource_group_name = var.resource_group_name
+  location            = var.secondary_location
+
+  create_mode      = "GeoReplica"
+  source_server_id = azurerm_cosmosdb_mongo_cluster.primary[count.index].id
+
+  compute_tier           = "M25"
+  high_availability_mode = "Disabled"
+  shard_count            = 1
+  storage_size_in_gb     = var.storage_size_in_gb
+
+  depends_on = [azurerm_cosmosdb_mongo_cluster.primary]
+}
+
+resource "azurerm_cosmosdb_mongo_cluster_firewall_rule" "allow_azure" {
+  count            = var.resource_count
+  name             = "AllowAzureServices"
+  mongo_cluster_id = azurerm_cosmosdb_mongo_cluster.primary[count.index].id
+  start_ip_address = "0.0.0.0"
+  end_ip_address   = "0.0.0.0"
+
+  depends_on = [azurerm_cosmosdb_mongo_cluster.primary]
+}
