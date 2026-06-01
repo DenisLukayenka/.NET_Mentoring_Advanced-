@@ -2,6 +2,12 @@ name: "Terraform DEV"
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - 5_data_replication
+    paths:
+      - "deploy/azure/**"
+      - ".github/workflows/terraform_azure.dev.yml"
 
 permissions:
   contents: read
