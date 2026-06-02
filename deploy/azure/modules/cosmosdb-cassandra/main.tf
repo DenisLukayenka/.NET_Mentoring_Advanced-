@@ -77,3 +77,8 @@ resource "azurerm_cosmosdb_cassandra_table" "job_outputs" {
     }
   }
 }
+
+import {
+  to = module.cosmosdb_cassandra.azurerm_cosmosdb_account.job_outputs[0]
+  id = "/subscriptions/dbc052ff-21d7-478e-a0fe-d73ef7665c5b/resourceGroups/rg-scheduler-dev-eastus/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-cassandra-scheduler-dev"
+}
