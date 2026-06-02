@@ -43,6 +43,14 @@ module "documentdb" {
   resource_group_name = try(azurerm_resource_group.rg[0].name, "")
   admin_password      = var.documentdb_admin_password
 
+  allowed_ip_ranges = [
+    {
+      name     = "local-dev"
+      start_ip = var.local_dev_ip
+      end_ip   = var.local_dev_ip
+    }
+  ]
+
   depends_on = [azurerm_resource_group.rg]
 }
 

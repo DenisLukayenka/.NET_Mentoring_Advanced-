@@ -32,3 +32,8 @@ variable "documentdb_admin_password" {
   type      = string
   sensitive = true
 }
+
+variable "local_dev_ip" {
+  type        = string
+  description = "Your local machine's public IP address for DocumentDB firewall access."
+}

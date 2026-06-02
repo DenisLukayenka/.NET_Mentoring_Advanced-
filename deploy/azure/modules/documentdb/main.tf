@@ -46,3 +46,23 @@ resource "azurerm_mongo_cluster_firewall_rule" "custom" {
 
   depends_on = [azurerm_mongo_cluster.primary]
 }
+
+resource "azurerm_mongo_cluster_firewall_rule" "allow_azure_replica" {
+  count            = var.resource_count
+  name             = "AllowAzureServices"
+  mongo_cluster_id = azurerm_mongo_cluster.replica[count.index].id
+  start_ip_address = "0.0.0.0"
+  end_ip_address   = "0.0.0.0"
+
+  depends_on = [azurerm_mongo_cluster.replica]
+}
+
+resource "azurerm_mongo_cluster_firewall_rule" "custom_replica" {
+  for_each         = var.resource_count > 0 ? { for r in var.allowed_ip_ranges : r.name => r } : {}
+  name             = each.value.name
+  mongo_cluster_id = azurerm_mongo_cluster.replica[0].id
+  start_ip_address = each.value.start_ip
+  end_ip_address   = each.value.end_ip
+
+  depends_on = [azurerm_mongo_cluster.replica]
+}
