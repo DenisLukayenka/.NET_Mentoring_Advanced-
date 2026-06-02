@@ -61,8 +61,3 @@ resource "azurerm_cosmosdb_sql_container" "jobs" {
     }
   }
 }
-
-import {
-  to = module.cosmosdb_nosql.azurerm_cosmosdb_account.jobs[0]
-  id = "/subscriptions/dbc052ff-21d7-478e-a0fe-d73ef7665c5b/resourceGroups/rg-scheduler-dev-eastus/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-nosql-scheduler-dev"
-}
