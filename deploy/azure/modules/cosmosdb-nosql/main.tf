@@ -13,6 +13,12 @@ resource "azurerm_cosmosdb_account" "jobs" {
     consistency_level = "ConsistentPrefix"
   }
 
+  timeouts {
+    create = "30m"
+    update = "30m"
+    delete = "30m"
+  }
+
   geo_location {
     location          = var.location
     failover_priority = 0
@@ -32,6 +38,12 @@ resource "azurerm_cosmosdb_sql_database" "scheduler" {
 
   autoscale_settings {
     max_throughput = var.max_throughput
+  }
+
+  timeouts {
+    create = "15m"
+    update = "15m"
+    delete = "15m"
   }
 }
 
@@ -59,5 +71,11 @@ resource "azurerm_cosmosdb_sql_container" "jobs" {
     excluded_path {
       path = "/\"_etag\"/?"
     }
+  }
+
+  timeouts {
+    create = "15m"
+    update = "15m"
+    delete = "15m"
   }
 }

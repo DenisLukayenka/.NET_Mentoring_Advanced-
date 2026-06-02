@@ -25,6 +25,12 @@ resource "azurerm_cosmosdb_account" "job_outputs" {
   capabilities {
     name = "EnableCassandra"
   }
+
+  timeouts {
+    create = "30m"
+    update = "30m"
+    delete = "30m"
+  }
 }
 
 resource "azurerm_cosmosdb_cassandra_keyspace" "scheduler" {
@@ -35,6 +41,12 @@ resource "azurerm_cosmosdb_cassandra_keyspace" "scheduler" {
 
   autoscale_settings {
     max_throughput = var.max_throughput
+  }
+
+  timeouts {
+    create = "15m"
+    update = "15m"
+    delete = "15m"
   }
 }
 
@@ -75,5 +87,11 @@ resource "azurerm_cosmosdb_cassandra_table" "job_outputs" {
       name     = "date"
       order_by = "Asc"
     }
+  }
+
+  timeouts {
+    create = "15m"
+    update = "15m"
+    delete = "15m"
   }
 }
