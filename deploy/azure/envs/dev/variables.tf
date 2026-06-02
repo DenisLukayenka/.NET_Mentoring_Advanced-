@@ -1,6 +1,6 @@
 variable "location" {
   type        = string
-  default     = "easteurope"
+  default     = "swedencentral"
   description = "Primary Azure region for all resources."
 }
 
