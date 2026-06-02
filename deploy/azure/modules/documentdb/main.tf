@@ -20,9 +20,6 @@ resource "azurerm_mongo_cluster" "replica" {
   resource_group_name = var.resource_group_name
   location            = var.secondary_location
 
-  administrator_username = var.admin_username
-  administrator_password = var.admin_password
-
   create_mode      = "GeoReplica"
   source_server_id = azurerm_mongo_cluster.primary[count.index].id
   source_location  = var.location

@@ -1,12 +1,12 @@
 variable "location" {
   type        = string
-  default     = "eastus"
+  default     = "easteurope"
   description = "Primary Azure region for all resources."
 }
 
 variable "secondary_location" {
   type        = string
-  default     = "eastus2"
+  default     = "westeurope"
   description = "Secondary region for geo-replication."
 }
 
