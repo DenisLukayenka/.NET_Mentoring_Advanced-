@@ -48,7 +48,7 @@ variable "storage_size_in_gb" {
 
 variable "compute_tier" {
   type        = string
-  default     = "M25"
+  default     = "M30"
   description = "Compute tier for the MongoDB cluster (e.g. M25, M30, M40)."
 }
 
