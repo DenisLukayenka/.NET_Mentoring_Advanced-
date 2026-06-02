@@ -6,7 +6,7 @@ variable "location" {
 
 variable "secondary_location" {
   type        = string
-  default     = "westeurope"
+  default     = "northeurope"
   description = "Secondary region for geo-replication."
 }
 
