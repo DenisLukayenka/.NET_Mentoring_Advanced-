@@ -101,4 +101,59 @@ public class JobDefinitionRepository(
             throw new DataAccessException($"Failed to update next execution for job definition {id}", ex);
         }
     }
+
+    public async Task UpdateAsync(JobDefinition definition, CancellationToken cancellationToken = default)
+    {
+        try
+        {
+            var filter = Builders<JobDefinitionDto>.Filter.Eq(x => x.Id, definition.Id);
+            var update = Builders<JobDefinitionDto>.Update
+                .Set(x => x.Name, definition.Name)
+                .Set(x => x.Description, definition.Description)
+                .Set(x => x.CronExpression, definition.CronExpression)
+                .Set(x => x.Concurrency, definition.Concurrency)
+                .Set(x => x.Active, definition.Active)
+                .Set(x => x.UpdatedDate, DateTime.UtcNow);
+
+            await _primaryCollection.UpdateOneAsync(filter, update, cancellationToken: cancellationToken);
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "Failed to update job definition {DefinitionId}", definition.Id);
+            throw new DataAccessException($"Failed to update job definition {definition.Id}", ex);
+        }
+    }
+
+    public async Task DeleteAsync(Guid id, CancellationToken cancellationToken = default)
+    {
+        try
+        {
+            var definitionFilter = Builders<JobDefinitionDto>.Filter.Eq(x => x.Id, id);
+            var definition = await _primaryCollection.Find(definitionFilter).FirstOrDefaultAsync(cancellationToken);
+            if (definition == null)
+                return;
+
+            using var session = await _primaryClient.StartSessionAsync(cancellationToken: cancellationToken);
+            session.StartTransaction();
+
+            try
+            {
+                var detailFilter = Builders<JobDetailDto>.Filter.Eq(x => x.Id, definition.JobDetailId);
+                await _primaryDetailCollection.DeleteOneAsync(session, detailFilter, cancellationToken: cancellationToken);
+                await _primaryCollection.DeleteOneAsync(session, definitionFilter, cancellationToken: cancellationToken);
+                await session.CommitTransactionAsync(cancellationToken);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "Transaction failed for deleting job definition {DefinitionId}, aborting", id);
+                await session.AbortTransactionAsync(cancellationToken);
+                throw;
+            }
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "Failed to delete job definition {DefinitionId}", id);
+            throw new DataAccessException($"Failed to delete job definition {id}", ex);
+        }
+    }
 }

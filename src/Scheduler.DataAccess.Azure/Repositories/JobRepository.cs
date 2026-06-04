@@ -85,4 +85,41 @@ public class JobRepository(
         }
     }
 
+    public async Task<Job> GetByIdAsync(Guid id, Guid jobDefinitionId, CancellationToken cancellationToken = default)
+    {
+        try
+        {
+            var response = await _replicaContainer.ReadItemAsync<JobDto>(
+                id.ToString(),
+                new PartitionKey(jobDefinitionId.ToString()),
+                cancellationToken: cancellationToken);
+
+            return response.Resource.ToModel();
+        }
+        catch (CosmosException ex) when (ex.StatusCode == HttpStatusCode.NotFound)
+        {
+            return null;
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "Failed to get job {JobId}", id);
+            throw new DataAccessException($"Failed to get job {id}", ex);
+        }
+    }
+
+    public async Task DeleteAsync(Guid id, Guid jobDefinitionId, CancellationToken cancellationToken = default)
+    {
+        try
+        {
+            await _primaryContainer.DeleteItemAsync<JobDto>(
+                id.ToString(),
+                new PartitionKey(jobDefinitionId.ToString()),
+                cancellationToken: cancellationToken);
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "Failed to delete job {JobId}", id);
+            throw new DataAccessException($"Failed to delete job {id}", ex);
+        }
+    }
 }

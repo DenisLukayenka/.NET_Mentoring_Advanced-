@@ -58,4 +58,21 @@ public class JobOutputRepository(
             throw new DataAccessException($"Failed to get job outputs for job {jobId}", ex);
         }
     }
+
+    public async Task DeleteByJobIdAsync(Guid jobId, CancellationToken cancellationToken = default)
+    {
+        try
+        {
+            var statement = new SimpleStatement(
+                "DELETE FROM scheduler.job_outputs WHERE job_id = ?",
+                jobId);
+
+            await primarySession.ExecuteAsync(statement);
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "Failed to delete job outputs for job {JobId}", jobId);
+            throw new DataAccessException($"Failed to delete job outputs for job {jobId}", ex);
+        }
+    }
 }
