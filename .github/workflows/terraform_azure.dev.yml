@@ -8,6 +8,12 @@ on:
     paths:
       - "deploy/azure/**"
       - ".github/workflows/terraform_azure.dev.yml"
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "deploy/azure/**"
+      - ".github/workflows/terraform_azure.dev.yml"
 
 permissions:
   contents: read
