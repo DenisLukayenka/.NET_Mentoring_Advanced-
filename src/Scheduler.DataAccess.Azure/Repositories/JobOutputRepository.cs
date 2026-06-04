@@ -24,7 +24,7 @@ public class JobOutputRepository(
                 dto.Id,
                 dto.Level,
                 dto.Message);
-            await primarySession.ExecuteAsync(statement);
+            await primarySession.ExecuteAsync(statement).ConfigureAwait(false);
         }
         catch (Exception ex)
         {
@@ -41,7 +41,7 @@ public class JobOutputRepository(
                 "SELECT job_id, date, id, level, message FROM scheduler.job_outputs WHERE job_id = ?",
                 jobId);
 
-            var rowSet = await replicaSession.ExecuteAsync(statement);
+            var rowSet = await replicaSession.ExecuteAsync(statement).ConfigureAwait(false);
 
             return rowSet.Select(row => new JobOutputDto
             {
@@ -67,7 +67,7 @@ public class JobOutputRepository(
                 "DELETE FROM scheduler.job_outputs WHERE job_id = ?",
                 jobId);
 
-            await primarySession.ExecuteAsync(statement);
+            await primarySession.ExecuteAsync(statement).ConfigureAwait(false);
         }
         catch (Exception ex)
         {

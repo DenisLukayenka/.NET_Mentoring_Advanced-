@@ -22,7 +22,7 @@ public class JobRepository(
         try
         {
             var dto = job.ToDto();
-            await _primaryContainer.CreateItemAsync(dto, new PartitionKey(job.JobDefinitionId.ToString()), cancellationToken: cancellationToken);
+            await _primaryContainer.CreateItemAsync(dto, new PartitionKey(job.JobDefinitionId.ToString()), cancellationToken: cancellationToken).ConfigureAwait(false);
         }
         catch (Exception ex)
         {
@@ -48,7 +48,7 @@ public class JobRepository(
                 jobId.ToString(),
                 new PartitionKey(jobDefinitionId.ToString()),
                 patches,
-                cancellationToken: cancellationToken);
+                cancellationToken: cancellationToken).ConfigureAwait(false);
         }
         catch (Exception ex)
         {
@@ -72,7 +72,7 @@ public class JobRepository(
 
             while (iterator.HasMoreResults)
             {
-                var page = await iterator.ReadNextAsync(cancellationToken);
+                var page = await iterator.ReadNextAsync(cancellationToken).ConfigureAwait(false);
                 results.AddRange(page.Select(JobMappings.ToModel));
             }
 
@@ -92,7 +92,7 @@ public class JobRepository(
             var response = await _replicaContainer.ReadItemAsync<JobDto>(
                 id.ToString(),
                 new PartitionKey(jobDefinitionId.ToString()),
-                cancellationToken: cancellationToken);
+                cancellationToken: cancellationToken).ConfigureAwait(false);
 
             return response.Resource.ToModel();
         }
@@ -114,7 +114,7 @@ public class JobRepository(
             await _primaryContainer.DeleteItemAsync<JobDto>(
                 id.ToString(),
                 new PartitionKey(jobDefinitionId.ToString()),
-                cancellationToken: cancellationToken);
+                cancellationToken: cancellationToken).ConfigureAwait(false);
         }
         catch (Exception ex)
         {

@@ -26,7 +26,7 @@ public class JobDefinitionRepository(
         try
         {
             var filter = Builders<JobDefinitionDto>.Filter.Eq(x => x.Id, id);
-            var dto = await _replicaCollection.Find(filter).FirstOrDefaultAsync(cancellationToken);
+            var dto = await _replicaCollection.Find(filter).FirstOrDefaultAsync(cancellationToken).ConfigureAwait(false);
             return dto?.ToModel();
         }
         catch (Exception ex)
@@ -44,7 +44,7 @@ public class JobDefinitionRepository(
                 Builders<JobDefinitionDto>.Filter.Lte(x => x.NextExecutionDate, asOf),
                 Builders<JobDefinitionDto>.Filter.Eq(x => x.Active, true));
 
-            var dtos = await _replicaCollection.Find(filter).ToListAsync(cancellationToken);
+            var dtos = await _replicaCollection.Find(filter).ToListAsync(cancellationToken).ConfigureAwait(false);
 
             return dtos.Select(JobDefinitionMappings.ToModel).ToList();
         }
@@ -59,21 +59,21 @@ public class JobDefinitionRepository(
     {
         try
         {
-            using var session = await _primaryClient.StartSessionAsync(cancellationToken: cancellationToken);
+            using var session = await _primaryClient.StartSessionAsync(cancellationToken: cancellationToken).ConfigureAwait(false);
             session.StartTransaction();
 
             try
             {
                 // IClientSession is not thread-safe — do not use Task.WhenAll here; concurrent ops on the same session corrupt transaction state.
-                await _primaryDetailCollection.InsertOneAsync(session, detail.ToDto(), cancellationToken: cancellationToken);
-                await _primaryCollection.InsertOneAsync(session, definition.ToDto(), cancellationToken: cancellationToken);
+                await _primaryDetailCollection.InsertOneAsync(session, detail.ToDto(), cancellationToken: cancellationToken).ConfigureAwait(false);
+                await _primaryCollection.InsertOneAsync(session, definition.ToDto(), cancellationToken: cancellationToken).ConfigureAwait(false);
 
-                await session.CommitTransactionAsync(cancellationToken);
+                await session.CommitTransactionAsync(cancellationToken).ConfigureAwait(false);
             }
             catch (Exception ex)
             {
                 logger.LogError(ex, "Transaction failed for job definition {DefinitionId}, aborting", definition.Id);
-                await session.AbortTransactionAsync(cancellationToken);
+                await session.AbortTransactionAsync(cancellationToken).ConfigureAwait(false);
                 throw;
             }
         }
@@ -93,7 +93,7 @@ public class JobDefinitionRepository(
                 .Set(x => x.NextExecutionDate, nextExecutionDate)
                 .Set(x => x.UpdatedDate, DateTime.UtcNow);
 
-            await _primaryCollection.UpdateOneAsync(filter, update, cancellationToken: cancellationToken);
+            await _primaryCollection.UpdateOneAsync(filter, update, cancellationToken: cancellationToken).ConfigureAwait(false);
         }
         catch (Exception ex)
         {
@@ -115,7 +115,7 @@ public class JobDefinitionRepository(
                 .Set(x => x.Active, definition.Active)
                 .Set(x => x.UpdatedDate, DateTime.UtcNow);
 
-            await _primaryCollection.UpdateOneAsync(filter, update, cancellationToken: cancellationToken);
+            await _primaryCollection.UpdateOneAsync(filter, update, cancellationToken: cancellationToken).ConfigureAwait(false);
         }
         catch (Exception ex)
         {
@@ -129,24 +129,24 @@ public class JobDefinitionRepository(
         try
         {
             var definitionFilter = Builders<JobDefinitionDto>.Filter.Eq(x => x.Id, id);
-            var definition = await _primaryCollection.Find(definitionFilter).FirstOrDefaultAsync(cancellationToken);
+            var definition = await _primaryCollection.Find(definitionFilter).FirstOrDefaultAsync(cancellationToken).ConfigureAwait(false);
             if (definition == null)
                 return;
 
-            using var session = await _primaryClient.StartSessionAsync(cancellationToken: cancellationToken);
+            using var session = await _primaryClient.StartSessionAsync(cancellationToken: cancellationToken).ConfigureAwait(false);
             session.StartTransaction();
 
             try
             {
                 var detailFilter = Builders<JobDetailDto>.Filter.Eq(x => x.Id, definition.JobDetailId);
-                await _primaryDetailCollection.DeleteOneAsync(session, detailFilter, cancellationToken: cancellationToken);
-                await _primaryCollection.DeleteOneAsync(session, definitionFilter, cancellationToken: cancellationToken);
-                await session.CommitTransactionAsync(cancellationToken);
+                await _primaryDetailCollection.DeleteOneAsync(session, detailFilter, cancellationToken: cancellationToken).ConfigureAwait(false);
+                await _primaryCollection.DeleteOneAsync(session, definitionFilter, cancellationToken: cancellationToken).ConfigureAwait(false);
+                await session.CommitTransactionAsync(cancellationToken).ConfigureAwait(false);
             }
             catch (Exception ex)
             {
                 logger.LogError(ex, "Transaction failed for deleting job definition {DefinitionId}, aborting", id);
-                await session.AbortTransactionAsync(cancellationToken);
+                await session.AbortTransactionAsync(cancellationToken).ConfigureAwait(false);
                 throw;
             }
         }

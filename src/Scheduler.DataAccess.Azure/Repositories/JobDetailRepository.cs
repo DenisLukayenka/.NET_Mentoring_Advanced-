@@ -23,7 +23,7 @@ public class JobDetailRepository(
         try
         {
             var filter = Builders<JobDetailDto>.Filter.Eq(x => x.Id, id);
-            var dto = await _replicaCollection.Find(filter).FirstOrDefaultAsync(cancellationToken);
+            var dto = await _replicaCollection.Find(filter).FirstOrDefaultAsync(cancellationToken).ConfigureAwait(false);
             return dto?.ToModel();
         }
         catch (Exception ex)
@@ -43,7 +43,7 @@ public class JobDetailRepository(
                 .Set(x => x.Payload, detail.Payload)
                 .Set(x => x.UpdatedDate, DateTime.UtcNow);
 
-            await _primaryCollection.UpdateOneAsync(filter, update, cancellationToken: cancellationToken);
+            await _primaryCollection.UpdateOneAsync(filter, update, cancellationToken: cancellationToken).ConfigureAwait(false);
         }
         catch (Exception ex)
         {
@@ -57,7 +57,7 @@ public class JobDetailRepository(
         try
         {
             var filter = Builders<JobDetailDto>.Filter.Eq(x => x.Id, id);
-            await _primaryCollection.DeleteOneAsync(filter, cancellationToken: cancellationToken);
+            await _primaryCollection.DeleteOneAsync(filter, cancellationToken: cancellationToken).ConfigureAwait(false);
         }
         catch (Exception ex)
         {
