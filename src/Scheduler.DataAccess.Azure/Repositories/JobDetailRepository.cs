@@ -22,9 +22,15 @@ public class JobDetailRepository(
     {
         try
         {
+            logger.LogDebug("Find JobDetail by id={Id} started.", id);
+
             var filter = Builders<JobDetailDto>.Filter.Eq(x => x.Id, id);
             var dto = await _replicaCollection.Find(filter).FirstOrDefaultAsync(cancellationToken).ConfigureAwait(false);
-            return dto?.ToModel();
+            var result = dto?.ToModel();
+
+            logger.LogDebug("Find JobDetail by id={Id} finished.", id);
+
+            return result;
         }
         catch (Exception ex)
         {
@@ -37,6 +43,8 @@ public class JobDetailRepository(
     {
         try
         {
+            logger.LogDebug("Update JobDetail with id={Id} started.", detail.Id);
+
             var filter = Builders<JobDetailDto>.Filter.Eq(x => x.Id, detail.Id);
             var update = Builders<JobDetailDto>.Update
                 .Set(x => x.Type, detail.Type)
@@ -44,6 +52,8 @@ public class JobDetailRepository(
                 .Set(x => x.UpdatedDate, DateTime.UtcNow);
 
             await _primaryCollection.UpdateOneAsync(filter, update, cancellationToken: cancellationToken).ConfigureAwait(false);
+
+            logger.LogDebug("Update JobDetail with id={Id} finished.", detail.Id);
         }
         catch (Exception ex)
         {
@@ -56,8 +66,12 @@ public class JobDetailRepository(
     {
         try
         {
+            logger.LogDebug("Delete JobDetail by id={Id} started.", id);
+
             var filter = Builders<JobDetailDto>.Filter.Eq(x => x.Id, id);
             await _primaryCollection.DeleteOneAsync(filter, cancellationToken: cancellationToken).ConfigureAwait(false);
+
+            logger.LogDebug("Delete JobDetail by id={Id} finished.", id);
         }
         catch (Exception ex)
         {

@@ -25,9 +25,15 @@ public class JobDefinitionRepository(
     {
         try
         {
+            logger.LogDebug("Find by id {Id} started.", id);
+
             var filter = Builders<JobDefinitionDto>.Filter.Eq(x => x.Id, id);
             var dto = await _replicaCollection.Find(filter).FirstOrDefaultAsync(cancellationToken).ConfigureAwait(false);
-            return dto?.ToModel();
+            var result = dto?.ToModel();
+
+            logger.LogDebug("Find by id {Id} finished.", id);
+
+            return result;
         }
         catch (Exception ex)
         {
@@ -40,13 +46,18 @@ public class JobDefinitionRepository(
     {
         try
         {
+            logger.LogDebug("Find by NextExecutionDate <= {AsOf} started", asOf);
+
             var filter = Builders<JobDefinitionDto>.Filter.And(
                 Builders<JobDefinitionDto>.Filter.Lte(x => x.NextExecutionDate, asOf),
                 Builders<JobDefinitionDto>.Filter.Eq(x => x.Active, true));
 
             var dtos = await _replicaCollection.Find(filter).ToListAsync(cancellationToken).ConfigureAwait(false);
+            var result = dtos.Select(JobDefinitionMappings.ToModel).ToList();
 
-            return dtos.Select(JobDefinitionMappings.ToModel).ToList();
+            logger.LogDebug("Find by NextExecutionDate <= {AsOf} finished", asOf);
+
+            return result;
         }
         catch (Exception ex)
         {
@@ -64,11 +75,15 @@ public class JobDefinitionRepository(
 
             try
             {
+                logger.LogDebug("Create JobDefinition and JobDetail with id={Id} started.", definition.Id);
+
                 // IClientSession is not thread-safe — do not use Task.WhenAll here; concurrent ops on the same session corrupt transaction state.
                 await _primaryDetailCollection.InsertOneAsync(session, detail.ToDto(), cancellationToken: cancellationToken).ConfigureAwait(false);
                 await _primaryCollection.InsertOneAsync(session, definition.ToDto(), cancellationToken: cancellationToken).ConfigureAwait(false);
 
                 await session.CommitTransactionAsync(cancellationToken).ConfigureAwait(false);
+
+                logger.LogDebug("Create JobDefinition and JobDetail with id={Id} finished.", definition.Id);
             }
             catch (Exception ex)
             {
@@ -88,12 +103,16 @@ public class JobDefinitionRepository(
     {
         try
         {
+            logger.LogDebug("Update JobDefinition's with id={Id}, NextExecutionDate={NextExecutionDate} started", id, nextExecutionDate);
+
             var filter = Builders<JobDefinitionDto>.Filter.Eq(x => x.Id, id);
             var update = Builders<JobDefinitionDto>.Update
                 .Set(x => x.NextExecutionDate, nextExecutionDate)
                 .Set(x => x.UpdatedDate, DateTime.UtcNow);
 
             await _primaryCollection.UpdateOneAsync(filter, update, cancellationToken: cancellationToken).ConfigureAwait(false);
+
+            logger.LogDebug("Update JobDefinition's with id={Id}, NextExecutionDate={NextExecutionDate} finished", id, nextExecutionDate);
         }
         catch (Exception ex)
         {
@@ -106,6 +125,8 @@ public class JobDefinitionRepository(
     {
         try
         {
+            logger.LogDebug("Update JobDefinition with id={Id} started", definition.Id);
+
             var filter = Builders<JobDefinitionDto>.Filter.Eq(x => x.Id, definition.Id);
             var update = Builders<JobDefinitionDto>.Update
                 .Set(x => x.Name, definition.Name)
@@ -116,6 +137,8 @@ public class JobDefinitionRepository(
                 .Set(x => x.UpdatedDate, DateTime.UtcNow);
 
             await _primaryCollection.UpdateOneAsync(filter, update, cancellationToken: cancellationToken).ConfigureAwait(false);
+
+            logger.LogDebug("Update JobDefinition with id={Id} finished", definition.Id);
         }
         catch (Exception ex)
         {
@@ -128,6 +151,8 @@ public class JobDefinitionRepository(
     {
         try
         {
+            logger.LogDebug("Delete JobDefinition and JobDetail by id={Id} started", id);
+
             var definitionFilter = Builders<JobDefinitionDto>.Filter.Eq(x => x.Id, id);
             var definition = await _primaryCollection.Find(definitionFilter).FirstOrDefaultAsync(cancellationToken).ConfigureAwait(false);
             if (definition == null)
@@ -142,6 +167,8 @@ public class JobDefinitionRepository(
                 await _primaryDetailCollection.DeleteOneAsync(session, detailFilter, cancellationToken: cancellationToken).ConfigureAwait(false);
                 await _primaryCollection.DeleteOneAsync(session, definitionFilter, cancellationToken: cancellationToken).ConfigureAwait(false);
                 await session.CommitTransactionAsync(cancellationToken).ConfigureAwait(false);
+
+                logger.LogDebug("Delete JobDefinition and JobDetail by id={Id} finished", id);
             }
             catch (Exception ex)
             {

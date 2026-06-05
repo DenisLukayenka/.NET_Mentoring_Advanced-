@@ -21,8 +21,12 @@ public class JobRepository(
     {
         try
         {
+            logger.LogDebug("Create Job with id={Id} and JobDefinitionId={JobDefinitionId} started.", job.Id, job.JobDefinitionId);
+
             var dto = job.ToDto();
             await _primaryContainer.CreateItemAsync(dto, new PartitionKey(job.JobDefinitionId.ToString()), cancellationToken: cancellationToken).ConfigureAwait(false);
+
+            logger.LogDebug("Create Job with id={Id} and JobDefinitionId={JobDefinitionId} finished.", job.Id, job.JobDefinitionId);
         }
         catch (Exception ex)
         {
@@ -35,6 +39,8 @@ public class JobRepository(
     {
         try
         {
+            logger.LogDebug("Update Job status to {Status} with id={Id} and JobDefinitionId={JobDefinitionId} started.", status, jobId, jobDefinitionId);
+
             var patches = new List<PatchOperation>
             {
                 PatchOperation.Set("/Status", status.ToString()),
@@ -49,6 +55,8 @@ public class JobRepository(
                 new PartitionKey(jobDefinitionId.ToString()),
                 patches,
                 cancellationToken: cancellationToken).ConfigureAwait(false);
+
+            logger.LogDebug("Update Job status to {Status} with id={Id} and JobDefinitionId={JobDefinitionId} finished.", status, jobId, jobDefinitionId);
         }
         catch (Exception ex)
         {
@@ -61,6 +69,8 @@ public class JobRepository(
     {
         try
         {
+            logger.LogDebug("Find Jobs by JobDefinitionId={JobDefinitionId} started.", jobDefinitionId);
+
             var query = new QueryDefinition("SELECT * FROM c WHERE c.JobDefinitionId = @id")
                 .WithParameter("@id", jobDefinitionId.ToString());
 
@@ -76,6 +86,8 @@ public class JobRepository(
                 results.AddRange(page.Select(JobMappings.ToModel));
             }
 
+            logger.LogDebug("Find Jobs by JobDefinitionId={JobDefinitionId} finished.", jobDefinitionId);
+
             return results;
         }
         catch (Exception ex)
@@ -89,12 +101,18 @@ public class JobRepository(
     {
         try
         {
+            logger.LogDebug("Find Job by id={Id} and JobDefinitionId={JobDefinitionId} started.", id, jobDefinitionId);
+
             var response = await _replicaContainer.ReadItemAsync<JobDto>(
                 id.ToString(),
                 new PartitionKey(jobDefinitionId.ToString()),
                 cancellationToken: cancellationToken).ConfigureAwait(false);
 
-            return response.Resource.ToModel();
+            var result = response.Resource.ToModel();
+
+            logger.LogDebug("Find Job by id={Id} and JobDefinitionId={JobDefinitionId} finished.", id, jobDefinitionId);
+
+            return result;
         }
         catch (CosmosException ex) when (ex.StatusCode == HttpStatusCode.NotFound)
         {
@@ -111,10 +129,14 @@ public class JobRepository(
     {
         try
         {
+            logger.LogDebug("Delete Job by id={Id} and JobDefinitionId={JobDefinitionId} started.", id, jobDefinitionId);
+
             await _primaryContainer.DeleteItemAsync<JobDto>(
                 id.ToString(),
                 new PartitionKey(jobDefinitionId.ToString()),
                 cancellationToken: cancellationToken).ConfigureAwait(false);
+
+            logger.LogDebug("Delete Job by id={Id} and JobDefinitionId={JobDefinitionId} finished.", id, jobDefinitionId);
         }
         catch (Exception ex)
         {
