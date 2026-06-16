@@ -24,7 +24,7 @@ variable "env" {
 
 variable "resource_count" {
   type        = number
-  default     = 0
+  default     = 1
   description = "Set to 0 to destroy all resources without removing configuration."
 }
 
