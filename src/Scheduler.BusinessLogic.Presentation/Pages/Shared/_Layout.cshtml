@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scheduler — Consistency Demo</title>
+    <style>
+        body { font-family: sans-serif; margin: 2rem; max-width: 900px; }
+        nav a { margin-right: 1rem; }
+        pre { background: #f4f4f4; padding: 1rem; overflow-x: auto; }
+        table { border-collapse: collapse; } td, th { border: 1px solid #ccc; padding: 4px 8px; }
+        .hint { color: #555; }
+        form label { display: block; margin: 0.35rem 0; }
+        .strip { display: flex; gap: 0.5rem; flex-wrap: wrap; margin: 0.75rem 0; }
+        .pill { padding: 2px 9px; border-radius: 11px; font-size: 0.8rem; border: 1px solid; }
+        .pill.ok { background: #e6f6ec; border-color: #57bb7e; color: #1d7a43; }
+        .pill.bad { background: #fdecec; border-color: #e06464; color: #b32424; }
+        .pill.neu { background: #eef1f6; border-color: #c2cad6; color: #44506a; }
+        table.probe { width: 100%; font-size: 0.85rem; }
+        .mono { font-family: ui-monospace, Consolas, monospace; }
+        .ms { color: #888; font-size: 0.75rem; }
+    </style>
+</head>
+<body>
+    <nav>
+        <a asp-page="/Index">Home</a>
+        <a asp-page="/CreateJob">UC 1.1 — Create Job</a>
+        <a asp-page="/ExecuteJob">UC 2.1 — Execute Job</a>
+    </nav>
+    <hr />
+    @RenderBody()
+</body>
+</html>

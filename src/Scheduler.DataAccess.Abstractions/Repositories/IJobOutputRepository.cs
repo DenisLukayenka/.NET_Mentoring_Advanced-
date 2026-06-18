@@ -4,8 +4,8 @@ namespace Scheduler.DataAccess.Abstractions.Repositories;
 
 public interface IJobOutputRepository
 {
-    Task CreateAsync(JobOutput output, CancellationToken cancellationToken = default);
-    Task<IReadOnlyList<JobOutput>> GetByJobIdAsync(Guid jobId, CancellationToken cancellationToken = default);
-    Task<IReadOnlyList<JobOutput>> GetByJobIdAndDateRangeAsync(Guid jobId, DateTime from, DateTime to, CancellationToken cancellationToken = default);
-    Task DeleteByJobIdAsync(Guid jobId, CancellationToken cancellationToken = default);
+    Task CreateAsync(JobOutput output, ConsistencyLevel consistencyLevel, CancellationToken cancellationToken = default);
+    Task<IReadOnlyList<JobOutput>> GetByJobIdAsync(Guid jobId, ConsistencyLevel consistencyLevel, CancellationToken cancellationToken = default);
+    Task<IReadOnlyList<JobOutput>> GetByJobIdAndDateRangeAsync(Guid jobId, DateTime from, DateTime to, ConsistencyLevel consistencyLevel, CancellationToken cancellationToken = default);
+    Task DeleteByJobIdAsync(Guid jobId, ConsistencyLevel consistencyLevel, CancellationToken cancellationToken = default);
 }

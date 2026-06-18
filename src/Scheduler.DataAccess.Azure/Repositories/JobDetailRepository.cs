@@ -4,10 +4,11 @@ using Scheduler.DataAccess.Abstractions.Repositories;
 using Scheduler.DataAccess.Azure.Dtos;
 using Scheduler.DataAccess.Azure.Mappings;
 using Scheduler.Shared.Models;
+using ConsistencyLevel = Scheduler.DataAccess.Abstractions.Consistency.ConsistencyLevel;
 
 namespace Scheduler.DataAccess.Azure.Repositories;
 
-public class JobDetailRepository(
+internal class JobDetailRepository(
     [FromKeyedServices(AzureConstants.DocumentDbPrimary)] IMongoClient primaryClient,
     [FromKeyedServices(AzureConstants.DocumentDbReplica)] IMongoClient replicaClient,
     ILogger<JobDetailRepository> logger) : IJobDetailRepository
@@ -18,19 +19,38 @@ public class JobDetailRepository(
     private readonly IMongoCollection<JobDetailDto> _primaryCollection = primaryClient.GetDatabase(DatabaseName).GetCollection<JobDetailDto>(CollectionName);
     private readonly IMongoCollection<JobDetailDto> _replicaCollection = replicaClient.GetDatabase(DatabaseName).GetCollection<JobDetailDto>(CollectionName);
 
-    public async Task<JobDetail> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
+    public async Task<JobDetail> GetByIdAsync(Guid id, ConsistencyLevel consistencyLevel, CancellationToken cancellationToken = default)
     {
         try
         {
             logger.LogDebug("Find JobDetail by id={Id} started.", id);
 
             var filter = Builders<JobDetailDto>.Filter.Eq(x => x.Id, id);
-            var dto = await _replicaCollection.Find(filter).FirstOrDefaultAsync(cancellationToken).ConfigureAwait(false);
-            var result = dto?.ToModel();
+            JobDetailDto dto;
+
+            if (consistencyLevel == ConsistencyLevel.Strong)
+            {
+                logger.LogDebug("DocumentDB read JobDetail {Id} -> PRIMARY (primary read, default local; correctness from atomic claim).", id);
+                dto = await _primaryCollection
+                    .Find(filter)
+                    .FirstOrDefaultAsync(cancellationToken)
+                    .ConfigureAwait(false);
+            }
+            else
+            {
+                logger.LogDebug("DocumentDB read JobDetail {Id} -> REPLICA (consistency=Eventual/local).", id);
+                dto = await _replicaCollection.Find(filter).FirstOrDefaultAsync(cancellationToken).ConfigureAwait(false);
+
+                if (dto == null)
+                {
+                    logger.LogDebug("DocumentDB read JobDetail {Id} -> replica miss; falling back to PRIMARY (replication lag window).", id);
+                    dto = await _primaryCollection.Find(filter).FirstOrDefaultAsync(cancellationToken).ConfigureAwait(false);
+                }
+            }
 
             logger.LogDebug("Find JobDetail by id={Id} finished.", id);
 
-            return result;
+            return dto?.ToModel();
         }
         catch (Exception ex)
         {
@@ -44,6 +64,7 @@ public class JobDetailRepository(
         try
         {
             logger.LogDebug("Update JobDetail with id={Id} started.", detail.Id);
+            logger.LogDebug("DocumentDB write JobDetail {Id} -> PRIMARY.", detail.Id);
 
             var filter = Builders<JobDetailDto>.Filter.Eq(x => x.Id, detail.Id);
             var update = Builders<JobDetailDto>.Update
@@ -67,9 +88,10 @@ public class JobDetailRepository(
         try
         {
             logger.LogDebug("Delete JobDetail by id={Id} started.", id);
+            logger.LogDebug("DocumentDB delete JobDetail {Id} -> PRIMARY.", id);
 
             var filter = Builders<JobDetailDto>.Filter.Eq(x => x.Id, id);
-            await _primaryCollection.DeleteOneAsync(filter, cancellationToken: cancellationToken).ConfigureAwait(false);
+            await _primaryCollection.DeleteOneAsync(filter, cancellationToken).ConfigureAwait(false);
 
             logger.LogDebug("Delete JobDetail by id={Id} finished.", id);
         }

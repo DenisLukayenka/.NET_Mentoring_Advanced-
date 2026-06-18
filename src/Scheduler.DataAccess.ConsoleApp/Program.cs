@@ -128,7 +128,7 @@ internal class Program
                     Level = (JobOutputLevel)(k % 4),
                     Message = k == 0 ? "Job started." : $"Step {k} completed."
                 };
-                await jobOutputRepository.CreateAsync(output);
+                await jobOutputRepository.CreateAsync(output, ConsistencyLevel.Eventual);
             }
             outputsByJob[jobId] = seeding.OutputsPerJob;
         }
@@ -156,21 +156,35 @@ internal class Program
         if (definitionIds.Count > 0)
         {
             var sampleDefinitionId = definitionIds[0];
-            var jobsInPartition = await jobRepository.GetByJobDefinitionIdAsync(sampleDefinitionId);
-            Console.WriteLine($"Read-back (Cosmos replica): JobDefinitionId={sampleDefinitionId} returned {jobsInPartition.Count} jobs from one partition.");
+
+            // Eventual: hits replica.
+            var jobsResult = await jobRepository.GetByJobDefinitionIdAsync(sampleDefinitionId, ConsistencyLevel.Eventual);
+            Console.WriteLine($"Read-back (Cosmos replica / Eventual): JobDefinitionId={sampleDefinitionId} returned {jobsResult.Count} jobs.");
+
+            // Strong: write a status transition, then read it back from the primary so the read is
+            // guaranteed to see the update.
+            if (jobIds.Count > 0)
+            {
+                var sampleJobId = jobIds[0];
+                await jobRepository.UpdateStatusAsync(
+                    sampleJobId, sampleDefinitionId, JobStatus.Succeeded, null);
+
+                var job = await jobRepository.GetByIdAsync(sampleJobId, sampleDefinitionId, ConsistencyLevel.Strong);
+                Console.WriteLine($"Read-back (Cosmos primary / Strong): job {job?.Id} status={job?.Status} (sees own write).");
+            }
         }
 
         if (jobIds.Count > 0)
         {
             var sampleJobId = jobIds[0];
-            var outputsInPartition = await jobOutputRepository.GetByJobIdAsync(sampleJobId);
-            Console.WriteLine($"Read-back (Cassandra replica): JobId={sampleJobId} returned {outputsInPartition.Count} outputs from one partition.");
+            var outputsResult = await jobOutputRepository.GetByJobIdAsync(sampleJobId, ConsistencyLevel.Eventual);
+            Console.WriteLine($"Read-back (Cassandra replica): JobId={sampleJobId} returned {outputsResult.Count} outputs from one partition.");
 
             // Clustering-key range read: same partition (JobId), bounded by the Date clustering key.
             var rangeStart = baseTime;
             var rangeEnd = baseTime.AddSeconds(Math.Max(1, seeding.OutputsPerJob));
-            var outputsInRange = await jobOutputRepository.GetByJobIdAndDateRangeAsync(sampleJobId, rangeStart, rangeEnd);
-            Console.WriteLine($"Read-back (Cassandra replica, range): JobId={sampleJobId} Date in [{rangeStart:O}, {rangeEnd:O}] returned {outputsInRange.Count} outputs from one partition.");
+            var rangeResult = await jobOutputRepository.GetByJobIdAndDateRangeAsync(sampleJobId, rangeStart, rangeEnd, ConsistencyLevel.Eventual);
+            Console.WriteLine($"Read-back (Cassandra replica, range): JobId={sampleJobId} Date in [{rangeStart:O}, {rangeEnd:O}] returned {rangeResult.Count} outputs from one partition.");
         }
 
         Console.WriteLine("\nSeeding complete.");

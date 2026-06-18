@@ -1,12 +1,15 @@
+using System.Net;
 using Scheduler.DataAccess.Abstractions.Exceptions;
 using Scheduler.DataAccess.Abstractions.Repositories;
 using Scheduler.DataAccess.Azure.Dtos;
 using Scheduler.DataAccess.Azure.Mappings;
 using Scheduler.Shared.Models;
+using ConsistencyLevel = Scheduler.DataAccess.Abstractions.Consistency.ConsistencyLevel;
+using CosmosConsistencyLevel = Microsoft.Azure.Cosmos.ConsistencyLevel;
 
 namespace Scheduler.DataAccess.Azure.Repositories;
 
-public class JobRepository(
+internal class JobRepository(
     [FromKeyedServices(AzureConstants.CosmosDbPrimary)] CosmosClient primaryClient,
     [FromKeyedServices(AzureConstants.CosmosDbReplica)] CosmosClient replicaClient,
     ILogger<JobRepository> logger) : IJobRepository
@@ -22,11 +25,17 @@ public class JobRepository(
         try
         {
             logger.LogDebug("Create Job with id={Id} and JobDefinitionId={JobDefinitionId} started.", job.Id, job.JobDefinitionId);
+            logger.LogDebug("Cosmos write Job {Id} -> PRIMARY (write-time unique key; consistency level N/A).", job.Id);
 
             var dto = job.ToDto();
             await _primaryContainer.CreateItemAsync(dto, new PartitionKey(job.JobDefinitionId.ToString()), cancellationToken: cancellationToken).ConfigureAwait(false);
 
             logger.LogDebug("Create Job with id={Id} and JobDefinitionId={JobDefinitionId} finished.", job.Id, job.JobDefinitionId);
+        }
+        catch (CosmosException ex) when (ex.StatusCode == HttpStatusCode.Conflict)
+        {
+            logger.LogDebug("Cosmos write Job {Id} -> duplicate run detected (unique key conflict).", job.Id);
+            throw new DuplicateJobRunException($"Duplicate job run: job definition {job.JobDefinitionId} at {job.ScheduledAt} already exists", ex);
         }
         catch (Exception ex)
         {
@@ -40,6 +49,7 @@ public class JobRepository(
         try
         {
             logger.LogDebug("Update Job status to {Status} with id={Id} and JobDefinitionId={JobDefinitionId} started.", status, jobId, jobDefinitionId);
+            logger.LogDebug("Cosmos write Job {Id} status -> PRIMARY (Session account default).", jobId);
 
             var patches = new List<PatchOperation>
             {
@@ -65,7 +75,7 @@ public class JobRepository(
         }
     }
 
-    public async Task<IReadOnlyList<Job>> GetByJobDefinitionIdAsync(Guid jobDefinitionId, CancellationToken cancellationToken = default)
+    public async Task<IReadOnlyList<Job>> GetByJobDefinitionIdAsync(Guid jobDefinitionId, ConsistencyLevel consistencyLevel, CancellationToken cancellationToken = default)
     {
         try
         {
@@ -74,10 +84,22 @@ public class JobRepository(
             var query = new QueryDefinition("SELECT * FROM c WHERE c.JobDefinitionId = @id")
                 .WithParameter("@id", jobDefinitionId.ToString());
 
-            var iterator = _replicaContainer.GetItemQueryIterator<JobDto>(
-                query,
-                requestOptions: new QueryRequestOptions { PartitionKey = new PartitionKey(jobDefinitionId.ToString()) });
+            var requestOptions = new QueryRequestOptions { PartitionKey = new PartitionKey(jobDefinitionId.ToString()) };
+            Container container;
 
+            if (consistencyLevel == ConsistencyLevel.Eventual)
+            {
+                logger.LogDebug("Cosmos read Job -> REPLICA (consistency=Eventual).");
+                requestOptions.ConsistencyLevel = CosmosConsistencyLevel.Eventual;
+                container = _replicaContainer;
+            }
+            else
+            {
+                logger.LogDebug("Cosmos read Job -> PRIMARY (Session via same client — read-your-writes).");
+                container = _primaryContainer;
+            }
+
+            var iterator = container.GetItemQueryIterator<JobDto>(query, requestOptions: requestOptions);
             var results = new List<Job>();
 
             while (iterator.HasMoreResults)
@@ -97,22 +119,36 @@ public class JobRepository(
         }
     }
 
-    public async Task<Job> GetByIdAsync(Guid id, Guid jobDefinitionId, CancellationToken cancellationToken = default)
+    public async Task<Job> GetByIdAsync(Guid id, Guid jobDefinitionId, ConsistencyLevel consistencyLevel, CancellationToken cancellationToken = default)
     {
         try
         {
             logger.LogDebug("Find Job by id={Id} and JobDefinitionId={JobDefinitionId} started.", id, jobDefinitionId);
 
-            var response = await _replicaContainer.ReadItemAsync<JobDto>(
+            ItemRequestOptions requestOptions = null;
+            Container container;
+
+            if (consistencyLevel == ConsistencyLevel.Eventual)
+            {
+                logger.LogDebug("Cosmos read Job -> REPLICA (consistency=Eventual).");
+                requestOptions = new ItemRequestOptions { ConsistencyLevel = CosmosConsistencyLevel.Eventual };
+                container = _replicaContainer;
+            }
+            else
+            {
+                logger.LogDebug("Cosmos read Job -> PRIMARY (Session via same client — read-your-writes).");
+                container = _primaryContainer;
+            }
+
+            var response = await container.ReadItemAsync<JobDto>(
                 id.ToString(),
                 new PartitionKey(jobDefinitionId.ToString()),
-                cancellationToken: cancellationToken).ConfigureAwait(false);
-
-            var result = response.Resource.ToModel();
+                requestOptions,
+                cancellationToken).ConfigureAwait(false);
 
             logger.LogDebug("Find Job by id={Id} and JobDefinitionId={JobDefinitionId} finished.", id, jobDefinitionId);
 
-            return result;
+            return response.Resource.ToModel();
         }
         catch (CosmosException ex) when (ex.StatusCode == HttpStatusCode.NotFound)
         {
@@ -130,6 +166,7 @@ public class JobRepository(
         try
         {
             logger.LogDebug("Delete Job by id={Id} and JobDefinitionId={JobDefinitionId} started.", id, jobDefinitionId);
+            logger.LogDebug("Cosmos delete Job {Id} -> PRIMARY.", id);
 
             await _primaryContainer.DeleteItemAsync<JobDto>(
                 id.ToString(),
