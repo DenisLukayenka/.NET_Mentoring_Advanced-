@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using System.Linq;
+using Microsoft.Extensions.Configuration;
 using Scheduler.DataAccess.Abstractions.Repositories;
 using Scheduler.DataAccess.Azure;
 using Scheduler.Shared.Models;
@@ -8,77 +11,168 @@ internal class Program
 {
     private static async Task Main(string[] args)
     {
+#if DEBUG
+        Environment.SetEnvironmentVariable("DOTNET_ENVIRONMENT", Environments.Development);
+#endif
+
         var host = Host.CreateDefaultBuilder(args)
+            .UseEnvironment(Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT") ?? Environments.Production)
             .ConfigureServices((ctx, services) =>
                 services.AddSchedulerDataAccess(ctx.Configuration))
             .Build();
 
-        // UC 1.1 — Create a new job
+        var configuration = host.Services.GetRequiredService<IConfiguration>();
+        var seeding = configuration.GetSection(SeedingOptions.Position).Get<SeedingOptions>() ?? new SeedingOptions();
+
         var jobDefinitionRepository = host.Services.GetRequiredService<IJobDefinitionRepository>();
-        var jobDetailRepository = host.Services.GetRequiredService<IJobDetailRepository>();
-
-        var jobDetail = new JobDetail
-        {
-            Id = Guid.NewGuid(),
-            Type = "HttpCall",
-            Payload = "{\"url\":\"https://example.com\"}",
-            CreatedDate = DateTime.UtcNow,
-            UpdatedDate = DateTime.UtcNow
-        };
-        var jobDefinition = new JobDefinition
-        {
-            Id = Guid.NewGuid(),
-            Name = "Daily report",
-            Description = "Sends daily report via HTTP",
-            CronExpression = "0 9 * * *",
-            Concurrency = false,
-            UserId = Guid.NewGuid(),
-            JobDetailId = jobDetail.Id,
-            CreatedDate = DateTime.UtcNow,
-            UpdatedDate = DateTime.UtcNow,
-            Active = true,
-            NextExecutionDate = DateTime.UtcNow.AddDays(1)
-        };
-
-        Console.WriteLine($"Creating job definition {jobDefinition.Id}...");
-        await jobDefinitionRepository.CreateAsync(jobDefinition, jobDetail);
-        Console.WriteLine("Written to DocumentDB primary (transaction).");
-
-        var retrievedJobDefinition = await jobDefinitionRepository.GetByIdAsync(jobDefinition.Id);
-        Console.WriteLine($"Read from DocumentDB replica: {retrievedJobDefinition?.Name ?? "not found"}");
-
-        var retrievedJobDetail = await jobDetailRepository.GetByIdAsync(jobDetail.Id);
-        Console.WriteLine($"Read job detail from DocumentDB replica: type={retrievedJobDetail?.Type ?? "not found"}");
-
-        // UC 2.1 — Execute a job
         var jobRepository = host.Services.GetRequiredService<IJobRepository>();
         var jobOutputRepository = host.Services.GetRequiredService<IJobOutputRepository>();
 
-        var job = new Job
+        Console.WriteLine("Seeding configuration:");
+        Console.WriteLine($"JobDefinitionCount = {seeding.JobDefinitionCount}");
+        Console.WriteLine($"JobsPerDefinition  = {seeding.JobsPerDefinition}");
+        Console.WriteLine($"OutputsPerJob      = {seeding.OutputsPerJob}");
+        Console.WriteLine($"UserPoolSize       = {seeding.UserPoolSize}");
+
+        var userPool = Enumerable.Range(0, Math.Max(1, seeding.UserPoolSize))
+            .Select(_ => Guid.NewGuid())
+            .ToArray();
+
+        var baseTime = DateTime.UtcNow;
+
+        // DocumentDB: JobDefinition + JobDetail pairs ─────────────────
+        var definitionIds = new List<Guid>(seeding.JobDefinitionCount);
+        var definitionUsers = new Dictionary<Guid, Guid>(seeding.JobDefinitionCount);
+
+        Console.WriteLine($"[1/3] Writing {seeding.JobDefinitionCount} JobDefinition + JobDetail pairs to DocumentDB.");
+        for (var i = 0; i < seeding.JobDefinitionCount; i++)
         {
-            Id = Guid.NewGuid(),
-            JobDefinitionId = jobDefinition.Id,
-            CreatedAt = DateTime.UtcNow,
-            UpdatedAt = DateTime.UtcNow,
-            ScheduledAt = DateTime.UtcNow,
-            Status = JobStatus.Pending
-        };
+            var jobDetail = new JobDetail
+            {
+                Id = Guid.NewGuid(),
+                Type = "HttpCall",
+                Payload = @"{'url': 'https://google.com'}",
+                CreatedDate = DateTime.UtcNow,
+                UpdatedDate = DateTime.UtcNow
+            };
+            var userId = userPool[i % userPool.Length];
+            var jobDefinition = new JobDefinition
+            {
+                Id = Guid.NewGuid(),
+                Name = $"Job definition #{i:D3}",
+                Description = $"Seeded definition {i} for partition distribution demo",
+                CronExpression = $"{i % 60} */{(i % 12) + 1} * * *",
+                Concurrency = true,
+                UserId = userId,
+                JobDetailId = jobDetail.Id,
+                CreatedDate = DateTime.UtcNow,
+                UpdatedDate = DateTime.UtcNow,
+                Active = true,
+                NextExecutionDate = baseTime.AddMinutes(i)
+            };
 
-        Console.WriteLine($"\nCreating job execution {job.Id}...");
-        await jobRepository.CreateAsync(job);
-        await jobRepository.UpdateStatusAsync(job.Id, job.JobDefinitionId, JobStatus.Running);
-        Console.WriteLine("Job status: Running (written to Cosmos DB primary).");
+            Console.WriteLine($"Creating job definition {jobDefinition.Id}...");
+            await jobDefinitionRepository.CreateAsync(jobDefinition, jobDetail);
+            Console.WriteLine("Written to DocumentDB primary (transaction).");
 
-        await jobOutputRepository.CreateAsync(new JobOutput { Id = Guid.NewGuid(), JobId = job.Id, Date = DateTime.UtcNow, Level = JobOutputLevel.Info, Message = "Job started." });
-        await jobOutputRepository.CreateAsync(new JobOutput { Id = Guid.NewGuid(), JobId = job.Id, Date = DateTime.UtcNow, Level = JobOutputLevel.Info, Message = "Job completed." });
-        Console.WriteLine("Job outputs written to Cassandra primary.");
+            definitionIds.Add(jobDefinition.Id);
+            definitionUsers[jobDefinition.Id] = userId;
+        }
 
-        await jobRepository.UpdateStatusAsync(job.Id, job.JobDefinitionId, JobStatus.Succeeded);
-        Console.WriteLine("Job status: Succeeded.");
+        // ── Cosmos NoSQL (Jobs): partitioned by JobDefinitionId ─────────────────
+        var jobsByDefinition = new Dictionary<Guid, List<Guid>>();
+        var jobIds = new List<Guid>();
+        var scheduleOffset = 0;
 
-        var jobOutputs = await jobOutputRepository.GetByJobIdAsync(job.Id);
-        Console.WriteLine($"\nRead {jobOutputs.Count} job output(s) from Cassandra replica:");
-        foreach (var jobOutput in jobOutputs)
-            Console.WriteLine($"  [{jobOutput.Level}] {jobOutput.Message}");
+        Console.WriteLine($"[2/3] Writing {seeding.JobsPerDefinition} Jobs per definition to Cosmos NoSQL.");
+        foreach (var definitionId in definitionIds)
+        {
+            var perDefinition = new List<Guid>(seeding.JobsPerDefinition);
+            for (var j = 0; j < seeding.JobsPerDefinition; j++)
+            {
+                var job = new Job
+                {
+                    Id = Guid.NewGuid(),
+                    JobDefinitionId = definitionId,
+                    CreatedAt = DateTime.UtcNow,
+                    UpdatedAt = DateTime.UtcNow,
+                    // Distinct ScheduledAt keeps the unique (JobDefinitionId, ScheduledAt) key satisfied.
+                    ScheduledAt = baseTime.AddMinutes(scheduleOffset++),
+                    Status = JobStatus.Pending
+                };
+
+                Console.WriteLine($"\nCreating job execution {job.Id}...");
+                await jobRepository.CreateAsync(job);
+                await jobRepository.UpdateStatusAsync(job.Id, job.JobDefinitionId, JobStatus.Running);
+                Console.WriteLine("Job status: Running (written to Cosmos DB primary).");
+
+                perDefinition.Add(job.Id);
+                jobIds.Add(job.Id);
+            }
+            jobsByDefinition[definitionId] = perDefinition;
+        }
+
+        // ── Cosmos Cassandra (JobOutputs): partitioned by JobId, clustered by Date ──
+        var outputsByJob = new Dictionary<Guid, int>();
+
+        Console.WriteLine($"[3/3] Writing {seeding.OutputsPerJob} JobOutputs per job to Cassandra.");
+        foreach (var jobId in jobIds)
+        {
+            for (var k = 0; k < seeding.OutputsPerJob; k++)
+            {
+                var output = new JobOutput
+                {
+                    Id = Guid.NewGuid(),
+                    JobId = jobId,
+                    Date = baseTime.AddSeconds(k),
+                    Level = (JobOutputLevel)(k % 4),
+                    Message = k == 0 ? "Job started." : $"Step {k} completed."
+                };
+                await jobOutputRepository.CreateAsync(output);
+            }
+            outputsByJob[jobId] = seeding.OutputsPerJob;
+        }
+
+        // ── Distribution summary ────────────────────────────────────────────────
+        Console.WriteLine("\n===== Distribution summary =====");
+        Console.WriteLine($"DocumentDB  : {definitionIds.Count} JobDefinitions across {definitionUsers.Values.Distinct().Count()} distinct UserId values");
+        Console.WriteLine($"Cosmos NoSQL: {jobIds.Count} Jobs across {jobsByDefinition.Count} JobDefinitionId partitions");
+
+        foreach (var kvp in jobsByDefinition.Take(5))
+            Console.WriteLine($"    partition JobDefinitionId={kvp.Key} --- {kvp.Value.Count} jobs");
+
+        if (jobsByDefinition.Count > 5)
+            Console.WriteLine($"    and {jobsByDefinition.Count - 5} more partitions");
+
+        Console.WriteLine($"Cassandra   : {outputsByJob.Values.Sum()} JobOutputs across {outputsByJob.Count} JobId partitions");
+
+        foreach (var kvp in outputsByJob.Take(5))
+            Console.WriteLine($"    partition JobId={kvp.Key} -> {kvp.Value} outputs");
+
+        if (outputsByJob.Count > 5)
+            Console.WriteLine($"    ... and {outputsByJob.Count - 5} more partitions");
+
+        // ── Read-back proof: partition-scoped reads return one partition's rows ──
+        if (definitionIds.Count > 0)
+        {
+            var sampleDefinitionId = definitionIds[0];
+            var jobsInPartition = await jobRepository.GetByJobDefinitionIdAsync(sampleDefinitionId);
+            Console.WriteLine($"Read-back (Cosmos replica): JobDefinitionId={sampleDefinitionId} returned {jobsInPartition.Count} jobs from one partition.");
+        }
+
+        if (jobIds.Count > 0)
+        {
+            var sampleJobId = jobIds[0];
+            var outputsInPartition = await jobOutputRepository.GetByJobIdAsync(sampleJobId);
+            Console.WriteLine($"Read-back (Cassandra replica): JobId={sampleJobId} returned {outputsInPartition.Count} outputs from one partition.");
+
+            // Clustering-key range read: same partition (JobId), bounded by the Date clustering key.
+            var rangeStart = baseTime;
+            var rangeEnd = baseTime.AddSeconds(Math.Max(1, seeding.OutputsPerJob));
+            var outputsInRange = await jobOutputRepository.GetByJobIdAndDateRangeAsync(sampleJobId, rangeStart, rangeEnd);
+            Console.WriteLine($"Read-back (Cassandra replica, range): JobId={sampleJobId} Date in [{rangeStart:O}, {rangeEnd:O}] returned {outputsInRange.Count} outputs from one partition.");
+        }
+
+        Console.WriteLine("\nSeeding complete.");
     }
 }
