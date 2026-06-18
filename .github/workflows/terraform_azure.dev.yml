@@ -2,19 +2,6 @@ name: "Terraform DEV"
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - 5_data_replication
-      - 7_consistency_consensus
-    paths:
-      - "deploy/azure/**"
-      - ".github/workflows/terraform_azure.dev.yml"
-  pull_request:
-    branches:
-      - main
-    paths:
-      - "deploy/azure/**"
-      - ".github/workflows/terraform_azure.dev.yml"
 
 permissions:
   contents: read
