@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - 5_data_replication
+      - 7_consistency_consensus
     paths:
       - "deploy/azure/**"
       - ".github/workflows/terraform_azure.dev.yml"
