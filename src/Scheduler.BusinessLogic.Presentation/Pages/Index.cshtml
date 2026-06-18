@@ -11,3 +11,12 @@
     <li><a asp-page="/CreateJob">UC 1.1 — Create a Job</a></li>
     <li><a asp-page="/ExecuteJob">UC 2.1 — Execute a Job</a></li>
 </ul>
+
+<h2>Granular handler demos</h2>
+<p class="hint">Each page calls several granular handlers directly from the presentation
+   layer and shows what each returns.</p>
+<ul>
+    <li><a asp-page="/JobDefinition">Create &amp; read a Job Definition</a> — CreateJobDefinition → GetJobDefinition → GetJobDetail</li>
+    <li><a asp-page="/JobRun">Create &amp; read a Job Run</a> — CreateJobRun → GetJob → GetJobHistory</li>
+    <li><a asp-page="/JobOutputs">Append &amp; read Job Outputs</a> — AppendJobOutput → GetJobOutputs</li>
+</ul>
