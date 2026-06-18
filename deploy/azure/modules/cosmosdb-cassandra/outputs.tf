@@ -1,0 +1,26 @@
+output "endpoint" {
+  value       = var.resource_count > 0 ? azurerm_cosmosdb_account.job_outputs[0].endpoint : ""
+  description = "Cosmos DB Cassandra account endpoint."
+}
+
+output "account_name" {
+  value       = var.resource_count > 0 ? azurerm_cosmosdb_account.job_outputs[0].name : ""
+  description = "Cosmos DB account name — use as the Cassandra username."
+}
+
+output "contact_point" {
+  value       = var.resource_count > 0 ? "${azurerm_cosmosdb_account.job_outputs[0].name}.cassandra.cosmos.azure.com" : ""
+  description = "Cassandra contact point hostname."
+}
+
+output "primary_key" {
+  value       = var.resource_count > 0 ? azurerm_cosmosdb_account.job_outputs[0].primary_key : ""
+  sensitive   = true
+  description = "Cosmos DB Cassandra account primary key."
+}
+
+output "primary_connection_string" {
+  value       = var.resource_count > 0 ? "AccountEndpoint=${azurerm_cosmosdb_account.job_outputs[0].endpoint};AccountKey=${azurerm_cosmosdb_account.job_outputs[0].primary_key};" : ""
+  sensitive   = true
+  description = "Cosmos DB Cassandra account primary connection string."
+}
