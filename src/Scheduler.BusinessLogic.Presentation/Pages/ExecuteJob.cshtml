@@ -3,24 +3,38 @@
 
 <h1>UC 2.1 — Execute a Job (consistency probe)</h1>
 <p class="hint">Runs the full scheduling-window flow across all three databases (DocumentDB, Cosmos NoSQL,
-   Cassandra). After each write it reads the affected entity from the primary AND the replica and reports
-   whether they agree. A mismatch (the replica still lagging) is the interesting-but-uncommon outcome.</p>
+    Cassandra) <strong>100 times concurrently</strong>. After each write it reads the affected entity from
+    the primary AND the replica and reports whether they agree. A mismatch (the replica still lagging) is
+    the interesting outcome — firing many concurrent iterations hammers the primary and makes that stale
+    read far more likely to surface on at least one run.</p>
 
-<form method="post">
-    <button type="submit">Run scheduling window &amp; probe</button>
-</form>
+    <form method="post">
+        <button type="submit">Run 100 concurrent scheduling windows &amp; probe</button>
+    </form>
 
-@if (Model.Result != null)
-{
-    var r = Model.Result;
-    <h2>Result</h2>
-    <div class="strip">
-        <span class="pill @(r.ClaimWon ? "ok" : "bad")">@(r.ClaimWon ? "Claim WON" : "Claim LOST")</span>
-        <span class="pill @(r.DuplicateBackstopHit ? "bad" : "neu")">@(r.DuplicateBackstopHit ? "Duplicate backstop fired" : "No duplicate backstop")</span>
-        <span class="pill neu">Final: @r.FinalStatus</span>
-        <span class="pill neu">JobId @r.JobId</span>
-    </div>
-    @await Html.PartialAsync("_ProbeTable", r.Probes)
-    <p class="hint">The console shows the matching <code>PRIMARY/REPLICA</code> + consistency line for
-       each repository call — capture it alongside this table as evidence.</p>
-}
+    @if (Model.Result != null)
+    {
+        var result = Model.Result;
+        <h2>Summary</h2>
+        <div class="strip">
+            <span class="pill neu">@result.RunCount concurrent runs</span>
+            <span class="pill @(result.StaleRunCount > 0 ? "bad" : "ok")">@result.StaleRunCount of @result.RunCount runs saw a
+                stale replica read</span>
+                <span class="pill @(result.StaleProbeCount > 0 ? "bad" : "ok")">@result.StaleProbeCount stale probes total</span>
+            </div>
+
+            @foreach (var r in result.Runs)
+            {
+                <h3>Run #@(r.RunIndex + 1)@(r.HasStaleProbe ? " — ⚠ stale read detected" : "")</h3>
+                <div class="strip">
+                    <span class="pill @(r.ClaimWon ? "ok" : "bad")">@(r.ClaimWon ? "Claim WON" : "Claim LOST")</span>
+                    <span class="pill @(r.DuplicateBackstopHit ? "bad" : "neu")">@(r.DuplicateBackstopHit ? "Duplicate backstop fired" :
+                                                  "No duplicate backstop")</span>
+                        <span class="pill neu">Final: @r.FinalStatus</span>
+                        <span class="pill neu">JobId @r.JobId</span>
+                    </div>
+                    @await Html.PartialAsync("_ProbeTable", r.Probes)
+                }
+                <p class="hint">The console shows the matching <code>PRIMARY/REPLICA</code> + consistency line for
+                    each repository call — capture it alongside this table as evidence.</p>
+                }

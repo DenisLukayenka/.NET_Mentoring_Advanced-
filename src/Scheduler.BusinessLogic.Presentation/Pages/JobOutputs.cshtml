@@ -3,10 +3,11 @@
 
 <h1>Granular handlers — Append &amp; read Job Outputs</h1>
 <p class="hint">Calls two granular handlers from the page:
-   <code>AppendJobOutput</code> twice (Eventual / LOCAL_ONE, append-only log) →
-   <code>GetJobOutputs</code> (Eventual / LOCAL_ONE read). The read-back may be
-   partial or empty if the read hits a replica that has not yet received the
-   appends.</p>
+    <code>AppendJobOutput</code> twice (Eventual / LOCAL_ONE, append-only log) →
+    <code>GetJobOutputs</code> (Eventual / LOCAL_ONE read). The read-back may be
+    partial or empty if the read hits a replica that has not yet received the
+    appends.
+</p>
 
 <form method="post">
     <label>Message <input name="Message" value="@Model.Message" /></label>
@@ -25,7 +26,13 @@
     @if (Model.Outputs != null && Model.Outputs.Outputs.Count > 0)
     {
         <table class="probe">
-            <thead><tr><th>Date</th><th>Level</th><th>Message</th></tr></thead>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Level</th>
+                    <th>Message</th>
+                </tr>
+            </thead>
             <tbody>
                 @foreach (var o in Model.Outputs.Outputs)
                 {

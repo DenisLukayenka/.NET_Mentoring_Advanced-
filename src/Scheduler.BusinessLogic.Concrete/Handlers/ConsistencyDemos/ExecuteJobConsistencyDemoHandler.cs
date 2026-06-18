@@ -14,6 +14,26 @@ public class ExecuteJobConsistencyDemoHandler(
     public async Task<ExecuteJobConsistencyDemoResponse> HandleAsync(
         ExecuteJobConsistencyDemoRequest request, CancellationToken cancellationToken = default)
     {
+        // Run the full scheduling-window flow many times concurrently. Hammering the primary with
+        // simultaneous writes and then immediately reading the replica makes replica lag (the
+        // eventual-consistency hazard this demo exists to show) far more likely to surface on at
+        // least one run, where a single sequential run almost never catches it.
+        var runCount = Math.Clamp(request.RunCount, 1, 100);
+
+        var runs = Enumerable.Range(0, runCount)
+            .Select(index => RunOnceAsync(index, cancellationToken))
+            .ToArray();
+
+        var results = await Task.WhenAll(runs).ConfigureAwait(false);
+
+        // Task.WhenAll preserves input order, but order explicitly by RunIndex to be safe.
+        return new ExecuteJobConsistencyDemoResponse(
+            results.OrderBy(r => r.RunIndex).ToArray());
+    }
+
+    private async Task<ExecuteJobConsistencyDemoRunResult> RunOnceAsync(
+        int runIndex, CancellationToken cancellationToken)
+    {
         var now = DateTime.UtcNow;
         var probes = new List<ReplicaProbe>();
 
@@ -41,7 +61,7 @@ public class ExecuteJobConsistencyDemoHandler(
             NextExecutionDate = now
         };
         await definitions.CreateAsync(definition, detail, cancellationToken).ConfigureAwait(false);
-        logger.LogDebug("UC2.1 demo: seeded definition {Id} due now.", definition.Id);
+        logger.LogDebug("UC2.1 demo run {Run}: seeded definition {Id} due now.", runIndex, definition.Id);
 
         probes.Add(await ConsistencyProbeRunner.ProbeAsync(
             "1 · after create — find JobDefinition", "DocumentDB", "_id",
@@ -53,7 +73,7 @@ public class ExecuteJobConsistencyDemoHandler(
         var claimWon = await definitions
             .TryClaimNextExecutionAsync(definition.Id, now, newNextExecution, cancellationToken)
             .ConfigureAwait(false);
-        logger.LogDebug("UC2.1 demo: claim for {Id} -> {Won}.", definition.Id, claimWon);
+        logger.LogDebug("UC2.1 demo run {Run}: claim for {Id} -> {Won}.", runIndex, definition.Id, claimWon);
 
         probes.Add(await ConsistencyProbeRunner.ProbeAsync(
             "2 · after claim — NextExecutionDate", "DocumentDB", "NextExecutionDate",
@@ -78,17 +98,13 @@ public class ExecuteJobConsistencyDemoHandler(
         catch (DuplicateJobRunException)
         {
             duplicateBackstopHit = true;
-            logger.LogDebug("UC2.1 demo: duplicate backstop fired for def {Id}.", definition.Id);
+            logger.LogDebug("UC2.1 demo run {Run}: duplicate backstop fired for def {Id}.", runIndex, definition.Id);
         }
 
         if (!duplicateBackstopHit)
         {
             await jobs.UpdateStatusAsync(job.Id, definition.Id, JobStatus.Running, null, cancellationToken).ConfigureAwait(false);
             await jobs.UpdateStatusAsync(job.Id, definition.Id, JobStatus.Succeeded, null, cancellationToken).ConfigureAwait(false);
-        }
-
-        if (!duplicateBackstopHit)
-        {
             probes.Add(await ConsistencyProbeRunner.ProbeAsync(
                 "3 · after status — Job.Status", "Cosmos NoSQL", "Status",
                 level => jobs.GetByIdAsync(job.Id, definition.Id, level, cancellationToken),
@@ -114,7 +130,7 @@ public class ExecuteJobConsistencyDemoHandler(
 
         var finalStatus = duplicateBackstopHit ? JobStatus.Pending : JobStatus.Succeeded;
 
-        return new ExecuteJobConsistencyDemoResponse(
-            definition.Id, detail.Id, job.Id, probes, claimWon, duplicateBackstopHit, finalStatus);
+        return new ExecuteJobConsistencyDemoRunResult(
+            runIndex, definition.Id, detail.Id, job.Id, probes, claimWon, duplicateBackstopHit, finalStatus);
     }
 }

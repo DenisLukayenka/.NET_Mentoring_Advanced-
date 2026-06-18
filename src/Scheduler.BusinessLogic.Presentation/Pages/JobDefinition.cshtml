@@ -3,10 +3,11 @@
 
 <h1>Granular handlers — Create &amp; read a Job Definition</h1>
 <p class="hint">Calls three granular handlers in sequence from the page:
-   <code>CreateJobDefinition</code> (Strong write) →
-   <code>GetJobDefinition</code> (primary read, read-your-writes) →
-   <code>GetJobDetail</code> (Eventual + primary fallback). The UI passes only
-   business fields; each handler picks its own consistency level.</p>
+    <code>CreateJobDefinition</code> (Strong write) →
+    <code>GetJobDefinition</code> (primary read, read-your-writes) →
+    <code>GetJobDetail</code> (Eventual + primary fallback). The UI passes only
+    business fields; each handler picks its own consistency level.
+</p>
 
 <form method="post">
     <label>Name <input name="Name" value="@Model.Name" /></label>
@@ -30,11 +31,26 @@
     {
         <table class="probe">
             <tbody>
-                <tr><th>Name</th><td>@Model.Definition.Name</td></tr>
-                <tr><th>Cron</th><td class="mono">@Model.Definition.CronExpression</td></tr>
-                <tr><th>Active</th><td>@Model.Definition.Active</td></tr>
-                <tr><th>NextExecutionDate</th><td class="mono">@Model.Definition.NextExecutionDate.ToString("O")</td></tr>
-                <tr><th>JobDetailId</th><td class="mono">@Model.Definition.JobDetailId</td></tr>
+                <tr>
+                    <th>Name</th>
+                    <td>@Model.Definition.Name</td>
+                </tr>
+                <tr>
+                    <th>Cron</th>
+                    <td class="mono">@Model.Definition.CronExpression</td>
+                </tr>
+                <tr>
+                    <th>Active</th>
+                    <td>@Model.Definition.Active</td>
+                </tr>
+                <tr>
+                    <th>NextExecutionDate</th>
+                    <td class="mono">@Model.Definition.NextExecutionDate.ToString("O")</td>
+                </tr>
+                <tr>
+                    <th>JobDetailId</th>
+                    <td class="mono">@Model.Definition.JobDetailId</td>
+                </tr>
             </tbody>
         </table>
     }
@@ -48,8 +64,14 @@
     {
         <table class="probe">
             <tbody>
-                <tr><th>Type</th><td>@Model.Detail.Type</td></tr>
-                <tr><th>Payload</th><td class="mono">@Model.Detail.Payload</td></tr>
+                <tr>
+                    <th>Type</th>
+                    <td>@Model.Detail.Type</td>
+                </tr>
+                <tr>
+                    <th>Payload</th>
+                    <td class="mono">@Model.Detail.Payload</td>
+                </tr>
             </tbody>
         </table>
     }

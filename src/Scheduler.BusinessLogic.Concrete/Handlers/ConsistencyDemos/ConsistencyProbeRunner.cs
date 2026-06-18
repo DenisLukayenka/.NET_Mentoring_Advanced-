@@ -12,10 +12,13 @@ internal static class ConsistencyProbeRunner
         Func<ConsistencyLevel, Task<T>> read,
         Func<T, string> project)
     {
-        var (primaryHas, primaryValue, primaryMs) =
-            await TimeAsync(() => read(ConsistencyLevel.Strong), project).ConfigureAwait(false);
-        var (replicaHas, replicaValue, replicaMs) =
-            await TimeAsync(() => read(ConsistencyLevel.Eventual), project).ConfigureAwait(false);
+        var primaryTask = TimeAsync(() => read(ConsistencyLevel.Strong), project);
+        var replicaTask = TimeAsync(() => read(ConsistencyLevel.Eventual), project);
+
+        await Task.WhenAll(primaryTask, replicaTask).ConfigureAwait(false);
+
+        var (primaryHas, primaryValue, primaryMs) = primaryTask.GetAwaiter().GetResult();
+        var (replicaHas, replicaValue, replicaMs) = replicaTask.GetAwaiter().GetResult();
 
         return ReplicaProbe.From(
             step, database, field,

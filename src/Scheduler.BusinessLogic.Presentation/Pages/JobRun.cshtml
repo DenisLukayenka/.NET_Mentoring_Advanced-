@@ -3,11 +3,12 @@
 
 <h1>Granular handlers — Create &amp; read a Job Run</h1>
 <p class="hint">Calls three granular handlers in sequence from the page:
-   <code>CreateJobRun</code> (write-time unique key) →
-   <code>GetJob</code> (Eventual read) →
-   <code>GetJobHistory</code> (Eventual read). Because the read-backs are
-   eventual, the just-created run may not be visible yet on the replica — that
-   replica-lag window is the Session/Eventual choice in action.</p>
+    <code>CreateJobRun</code> (write-time unique key) →
+    <code>GetJob</code> (Eventual read) →
+    <code>GetJobHistory</code> (Eventual read). Because the read-backs are
+    eventual, the just-created run may not be visible yet on the replica — that
+    replica-lag window is the Session/Eventual choice in action.
+</p>
 
 <form method="post">
     <button type="submit">Create run &amp; read</button>
@@ -27,8 +28,14 @@
     {
         <table class="probe">
             <tbody>
-                <tr><th>Status</th><td>@Model.Job.Status</td></tr>
-                <tr><th>ScheduledAt</th><td class="mono">@Model.Job.ScheduledAt.ToString("O")</td></tr>
+                <tr>
+                    <th>Status</th>
+                    <td>@Model.Job.Status</td>
+                </tr>
+                <tr>
+                    <th>ScheduledAt</th>
+                    <td class="mono">@Model.Job.ScheduledAt.ToString("O")</td>
+                </tr>
             </tbody>
         </table>
     }
@@ -41,7 +48,13 @@
     @if (Model.History != null && Model.History.Jobs.Count > 0)
     {
         <table class="probe">
-            <thead><tr><th>JobId</th><th>Status</th><th>ScheduledAt</th></tr></thead>
+            <thead>
+                <tr>
+                    <th>JobId</th>
+                    <th>Status</th>
+                    <th>ScheduledAt</th>
+                </tr>
+            </thead>
             <tbody>
                 @foreach (var j in Model.History.Jobs)
                 {
