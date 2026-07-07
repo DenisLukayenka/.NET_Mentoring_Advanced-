@@ -1,0 +1,52 @@
+@page
+@model Scheduler.BusinessLogic.Presentation.Pages.JobOutputsModel
+
+<h1>Granular handlers — Append &amp; read Job Outputs</h1>
+<p class="hint">Calls two granular handlers from the page:
+    <code>AppendJobOutput</code> twice (Eventual / LOCAL_ONE, append-only log) →
+    <code>GetJobOutputs</code> (Eventual / LOCAL_ONE read). The read-back may be
+    partial or empty if the read hits a replica that has not yet received the
+    appends.
+</p>
+
+<form method="post">
+    <label>Message <input name="Message" value="@Model.Message" /></label>
+    <button type="submit">Append &amp; read</button>
+</form>
+
+@if (Model.AppendedCount > 0)
+{
+    <h2>Result</h2>
+    <div class="strip">
+        <span class="pill ok">Appended @Model.AppendedCount line(s)</span>
+        <span class="pill neu">JobId @Model.JobId</span>
+    </div>
+
+    <h3>Job outputs (eventual / LOCAL_ONE read)</h3>
+    @if (Model.Outputs != null && Model.Outputs.Outputs.Count > 0)
+    {
+        <table class="probe">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Level</th>
+                    <th>Message</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var o in Model.Outputs.Outputs)
+                {
+                    <tr>
+                        <td class="mono">@o.Date.ToString("O")</td>
+                        <td>@o.Level</td>
+                        <td>@o.Message</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p class="hint">No lines returned on the eventual read (LOCAL_ONE lag) — expected within the lag window.</p>
+    }
+}

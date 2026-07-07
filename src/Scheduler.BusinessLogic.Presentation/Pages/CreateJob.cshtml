@@ -1,0 +1,31 @@
+@page
+@model Scheduler.BusinessLogic.Presentation.Pages.CreateJobModel
+
+<h1>UC 1.1 — Create a Job (consistency probe)</h1>
+<p class="hint">Creates a JobDefinition + JobDetail atomically (<code>w:majority</code> on the primary),
+    then reads each back from the primary AND the replica. The primary read proves read-your-writes;
+    the replica read shows whether replication has caught up yet — usually it has, so a green run is
+    the expected, common case.</p>
+
+    <form method="post">
+        <label>Name <input name="Name" value="@Model.Name" /></label>
+        <label>Cron <input name="CronExpression" value="@Model.CronExpression" /></label>
+        <label>Payload <input name="Payload" value="@Model.Payload" /></label>
+        <button type="submit">Create &amp; probe</button>
+    </form>
+
+    @if (Model.Result != null)
+    {
+        var r = Model.Result;
+        <h2>Result</h2>
+        <div class="strip">
+            <span class="pill @(r.TransactionCommitted ? "ok" : "bad")">@(r.TransactionCommitted ? "Transaction committed" :
+                    "Transaction FAILED")</span>
+                <span class="pill @(r.ReadYourWritesHeld ? "ok" : "bad")">@(r.ReadYourWritesHeld ? "Read-your-writes held" :
+                          "Read-your-writes FAILED")</span>
+                    <span class="pill neu">JobDefinitionId @r.JobDefinitionId</span>
+                </div>
+                @await Html.PartialAsync("_ProbeTable", new[] { r.DefinitionReadBack, r.DetailReadBack })
+                <p class="hint">Note: <code>JobDetail</code>'s replica read uses primary-fallback-on-miss (per UC 2.1
+                    design), so it demonstrates the fallback rather than raw replica lag.</p>
+                }

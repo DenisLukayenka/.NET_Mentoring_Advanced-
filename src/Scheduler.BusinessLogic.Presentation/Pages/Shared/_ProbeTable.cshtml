@@ -1,0 +1,37 @@
+@using Scheduler.BusinessLogic.Abstractions.Models.ConsistencyDemos
+@model IEnumerable<ReplicaProbe>
+
+<table class="probe">
+    <thead>
+        <tr>
+            <th>Step</th>
+            <th>DB</th>
+            <th>Field</th>
+            <th>Primary</th>
+            <th>Replica</th>
+            <th>Consistent</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var p in Model)
+        {
+            <tr>
+                <td>@p.Step</td>
+                <td>@p.Database</td>
+                <td class="mono">@p.Field</td>
+                <td class="mono">@p.PrimaryValue <span class="ms">@(p.PrimaryMs)ms</span></td>
+                <td class="mono">@p.ReplicaValue <span class="ms">@(p.ReplicaMs)ms</span></td>
+                <td>
+                    @if (p.Match)
+                    {
+                        <span class="pill ok">✓ match</span>
+                    }
+                    else
+                    {
+                        <span class="pill bad">✗ stale</span>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

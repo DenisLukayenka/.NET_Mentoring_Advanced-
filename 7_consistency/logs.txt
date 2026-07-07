@@ -1,0 +1,613 @@
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Create JobDefinition and JobDetail with id=10512396-936f-4090-a355-3744bc8e681d finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=f64f70a3-c1ed-434a-a557-e0cf29dd38bf started.
+dbug: Scheduler.BusinessLogic.Concrete.Handlers.ConsistencyDemos.ExecuteJobConsistencyDemoHandler[0] UC2.1 demo run 90: seeded definition 10512396-936f-4090-a355-3744bc8e681d due now.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id 10512396-936f-4090-a355-3744bc8e681d started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Cassandra read JobOutputs job=f64f70a3-c1ed-434a-a557-e0cf29dd38bf -> REPLICA (consistency=LocalOne).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Find Job by id=eb3ca744-5099-4f61-a708-b5a7e6d45422 and JobDefinitionId=5c2fba4c-1fa8-400c-8865-6733d98caeb1 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] DocumentDB read JobDefinition 10512396-936f-4090-a355-3744bc8e681d -> PRIMARY (primary read, default local; correctness from atomic claim).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Create JobOutput with id=063862e8-8e8f-4e3c-acdf-f114b4fd9a88 in partition JobId=eb3ca744-5099-4f61-a708-b5a7e6d45422, clustering Date=06/18/2026 20:36:54 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Cassandra write JobOutput 063862e8-8e8f-4e3c-acdf-f114b4fd9a88 -> PRIMARY (consistency=LocalOne).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=9874460e-f03e-41c7-ada2-6582336953a1 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id 0d8ad69b-4b65-4c9a-9156-72947d3bd30a started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] TryClaimNextExecution for JobDefinition 9ecb1694-4698-4371-9c31-ab236de441b7 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Update Job status to Running with id=870354dd-b00f-41e2-8629-953b65fc161c and JobDefinitionId=80c63e30-54cc-4470-8af8-2f6ba2669086 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] DocumentDB read JobDefinition 0d8ad69b-4b65-4c9a-9156-72947d3bd30a -> PRIMARY (primary read, default local; correctness from atomic claim).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Update Job status to Succeeded with id=64edca6c-9b56-49b8-a4a2-8658fb02357c and JobDefinitionId=d481e3a0-4a35-4282-8e5e-fdea995157dd finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Update Job status to Succeeded with id=870354dd-b00f-41e2-8629-953b65fc161c and JobDefinitionId=80c63e30-54cc-4470-8af8-2f6ba2669086 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Find Job by id=64edca6c-9b56-49b8-a4a2-8658fb02357c and JobDefinitionId=d481e3a0-4a35-4282-8e5e-fdea995157dd started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos write Job 870354dd-b00f-41e2-8629-953b65fc161c status -> PRIMARY (Session account default).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos read Job -> PRIMARY (Session via same client - read-your-writes).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Find Job by id=0b3e0585-d030-4930-85ca-7f96f3372a1d and JobDefinitionId=8cffe132-acb9-41b3-9d60-59f857aac46f finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=f64f70a3-c1ed-434a-a557-e0cf29dd38bf finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Create JobOutput with id=bb34c7cf-5c28-4707-9917-20e50743e503 in partition JobId=0b3e0585-d030-4930-85ca-7f96f3372a1d, clustering Date=06/18/2026 20:36:54 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Cassandra write JobOutput bb34c7cf-5c28-4707-9917-20e50743e503 -> PRIMARY (consistency=LocalOne).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id 32a23329-2242-409c-a5db-fcfdb6737311 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Update Job status to Succeeded with id=db32b076-4044-45a9-b5c1-de8d487dd230 and JobDefinitionId=ec48d05c-d196-4389-91f9-3d4c827a10bc finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id 32a23329-2242-409c-a5db-fcfdb6737311 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] DocumentDB read JobDefinition 32a23329-2242-409c-a5db-fcfdb6737311 -> REPLICA (consistency=Eventual/local).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Find Job by id=db32b076-4044-45a9-b5c1-de8d487dd230 and JobDefinitionId=ec48d05c-d196-4389-91f9-3d4c827a10bc started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos read Job -> PRIMARY (Session via same client - read-your-writes).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id 10512396-936f-4090-a355-3744bc8e681d finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id 10512396-936f-4090-a355-3744bc8e681d started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] DocumentDB write JobDefinition 9ecb1694-4698-4371-9c31-ab236de441b7 NextExecution -> PRIMARY (atomic findOneAndUpdate, w:majority; claim slot).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] DocumentDB read JobDefinition 10512396-936f-4090-a355-3744bc8e681d -> REPLICA (consistency=Eventual/local).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Create JobOutput with id=063862e8-8e8f-4e3c-acdf-f114b4fd9a88 in partition JobId=eb3ca744-5099-4f61-a708-b5a7e6d45422, clustering Date=06/18/2026 20:36:54 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=eb3ca744-5099-4f61-a708-b5a7e6d45422 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Cassandra read JobOutputs job=eb3ca744-5099-4f61-a708-b5a7e6d45422 -> PRIMARY (consistency=LocalQuorum).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=f64f70a3-c1ed-434a-a557-e0cf29dd38bf finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Create JobDefinition and JobDetail with id=d6285613-7f75-4458-9484-67bd61216a7d finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] DocumentDB write JobDefinition 2b7c42ee-573c-4a62-af7c-41e9c32c8c4e -> PRIMARY (transaction, w:majority).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=eb3ca744-5099-4f61-a708-b5a7e6d45422 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Cassandra read JobOutputs job=eb3ca744-5099-4f61-a708-b5a7e6d45422 -> REPLICA (consistency=LocalOne).
+dbug: Scheduler.BusinessLogic.Concrete.Handlers.ConsistencyDemos.ExecuteJobConsistencyDemoHandler[0] UC2.1 demo run 91: seeded definition d6285613-7f75-4458-9484-67bd61216a7d due now.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Update Job status to Succeeded with id=870354dd-b00f-41e2-8629-953b65fc161c and JobDefinitionId=80c63e30-54cc-4470-8af8-2f6ba2669086 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Find Job by id=64edca6c-9b56-49b8-a4a2-8658fb02357c and JobDefinitionId=d481e3a0-4a35-4282-8e5e-fdea995157dd started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Find Job by id=64edca6c-9b56-49b8-a4a2-8658fb02357c and JobDefinitionId=d481e3a0-4a35-4282-8e5e-fdea995157dd finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Find Job by id=870354dd-b00f-41e2-8629-953b65fc161c and JobDefinitionId=80c63e30-54cc-4470-8af8-2f6ba2669086 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos read Job -> PRIMARY (Session via same client - read-your-writes).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos read Job -> REPLICA (consistency=Eventual).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Create JobOutput with id=bb34c7cf-5c28-4707-9917-20e50743e503 in partition JobId=0b3e0585-d030-4930-85ca-7f96f3372a1d, clustering Date=06/18/2026 20:36:54 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=0b3e0585-d030-4930-85ca-7f96f3372a1d started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id 0d8ad69b-4b65-4c9a-9156-72947d3bd30a finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id d6285613-7f75-4458-9484-67bd61216a7d started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id 0d8ad69b-4b65-4c9a-9156-72947d3bd30a started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Cassandra read JobOutputs job=0b3e0585-d030-4930-85ca-7f96f3372a1d -> PRIMARY (consistency=LocalQuorum).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] DocumentDB read JobDefinition d6285613-7f75-4458-9484-67bd61216a7d -> PRIMARY (primary read, default local; correctness from atomic claim).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=0b3e0585-d030-4930-85ca-7f96f3372a1d started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] DocumentDB read JobDefinition 0d8ad69b-4b65-4c9a-9156-72947d3bd30a -> REPLICA (consistency=Eventual/local).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Cassandra read JobOutputs job=0b3e0585-d030-4930-85ca-7f96f3372a1d -> REPLICA (consistency=LocalOne).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id 32a23329-2242-409c-a5db-fcfdb6737311 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=eb3ca744-5099-4f61-a708-b5a7e6d45422 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] TryClaimNextExecution for JobDefinition 9ecb1694-4698-4371-9c31-ab236de441b7 -> WON the slot.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id 10512396-936f-4090-a355-3744bc8e681d finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Create Job with id=37207eb4-6da9-407f-8ebf-1f688a34b33c and JobDefinitionId=32a23329-2242-409c-a5db-fcfdb6737311 started.
+dbug: Scheduler.BusinessLogic.Concrete.Handlers.ConsistencyDemos.ExecuteJobConsistencyDemoHandler[0] UC2.1 demo run 88: claim for 9ecb1694-4698-4371-9c31-ab236de441b7 -> True.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] TryClaimNextExecution for JobDefinition 10512396-936f-4090-a355-3744bc8e681d started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id 9ecb1694-4698-4371-9c31-ab236de441b7 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] DocumentDB write JobDefinition 10512396-936f-4090-a355-3744bc8e681d NextExecution -> PRIMARY (atomic findOneAndUpdate, w:majority; claim slot).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] DocumentDB read JobDefinition 9ecb1694-4698-4371-9c31-ab236de441b7 -> PRIMARY (primary read, default local; correctness from atomic claim).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Find Job by id=db32b076-4044-45a9-b5c1-de8d487dd230 and JobDefinitionId=ec48d05c-d196-4389-91f9-3d4c827a10bc finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Find Job by id=db32b076-4044-45a9-b5c1-de8d487dd230 and JobDefinitionId=ec48d05c-d196-4389-91f9-3d4c827a10bc started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos read Job -> REPLICA (consistency=Eventual).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos write Job 37207eb4-6da9-407f-8ebf-1f688a34b33c -> PRIMARY (write-time unique key; consistency level N/A).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=eb3ca744-5099-4f61-a708-b5a7e6d45422 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=0b3e0585-d030-4930-85ca-7f96f3372a1d finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Find Job by id=870354dd-b00f-41e2-8629-953b65fc161c and JobDefinitionId=80c63e30-54cc-4470-8af8-2f6ba2669086 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Find Job by id=64edca6c-9b56-49b8-a4a2-8658fb02357c and JobDefinitionId=d481e3a0-4a35-4282-8e5e-fdea995157dd finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Create JobOutput with id=92cabb01-92b0-43da-8c94-13c1eccd0967 in partition JobId=64edca6c-9b56-49b8-a4a2-8658fb02357c, clustering Date=06/18/2026 20:36:55 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Cassandra write JobOutput 92cabb01-92b0-43da-8c94-13c1eccd0967 -> PRIMARY (consistency=LocalOne).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Find Job by id=870354dd-b00f-41e2-8629-953b65fc161c and JobDefinitionId=80c63e30-54cc-4470-8af8-2f6ba2669086 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id d6285613-7f75-4458-9484-67bd61216a7d finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id 9ecb1694-4698-4371-9c31-ab236de441b7 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id d6285613-7f75-4458-9484-67bd61216a7d started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] DocumentDB read JobDefinition 9ecb1694-4698-4371-9c31-ab236de441b7 -> REPLICA (consistency=Eventual/local).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos read Job -> REPLICA (consistency=Eventual).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] DocumentDB read JobDefinition d6285613-7f75-4458-9484-67bd61216a7d -> REPLICA (consistency=Eventual/local).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=0b3e0585-d030-4930-85ca-7f96f3372a1d finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] TryClaimNextExecution for JobDefinition 10512396-936f-4090-a355-3744bc8e681d -> WON the slot.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id 9ecb1694-4698-4371-9c31-ab236de441b7 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id 0d8ad69b-4b65-4c9a-9156-72947d3bd30a finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] TryClaimNextExecution for JobDefinition 0d8ad69b-4b65-4c9a-9156-72947d3bd30a started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Create JobDefinition and JobDetail with id=3b9baba7-cab9-4a0a-9dc4-88b3f18fa3ba started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] DocumentDB write JobDefinition 0d8ad69b-4b65-4c9a-9156-72947d3bd30a NextExecution -> PRIMARY (atomic findOneAndUpdate, w:majority; claim slot).
+dbug: Scheduler.BusinessLogic.Concrete.Handlers.ConsistencyDemos.ExecuteJobConsistencyDemoHandler[0] UC2.1 demo run 90: claim for 10512396-936f-4090-a355-3744bc8e681d -> True.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] DocumentDB write JobDefinition 3b9baba7-cab9-4a0a-9dc4-88b3f18fa3ba -> PRIMARY (transaction, w:majority).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id 10512396-936f-4090-a355-3744bc8e681d started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] DocumentDB read JobDefinition 10512396-936f-4090-a355-3744bc8e681d -> PRIMARY (primary read, default local; correctness from atomic claim).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Find Job by id=db32b076-4044-45a9-b5c1-de8d487dd230 and JobDefinitionId=ec48d05c-d196-4389-91f9-3d4c827a10bc finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Create Job with id=37207eb4-6da9-407f-8ebf-1f688a34b33c and JobDefinitionId=32a23329-2242-409c-a5db-fcfdb6737311 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Update Job status to Running with id=37207eb4-6da9-407f-8ebf-1f688a34b33c and JobDefinitionId=32a23329-2242-409c-a5db-fcfdb6737311 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Create JobOutput with id=0e4451bd-e261-48d3-8205-19ccca7b084c in partition JobId=db32b076-4044-45a9-b5c1-de8d487dd230, clustering Date=06/18/2026 20:36:55 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos write Job 37207eb4-6da9-407f-8ebf-1f688a34b33c status -> PRIMARY (Session account default).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Create JobOutput with id=92cabb01-92b0-43da-8c94-13c1eccd0967 in partition JobId=64edca6c-9b56-49b8-a4a2-8658fb02357c, clustering Date=06/18/2026 20:36:55 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Cassandra write JobOutput 0e4451bd-e261-48d3-8205-19ccca7b084c -> PRIMARY (consistency=LocalOne).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=64edca6c-9b56-49b8-a4a2-8658fb02357c started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Cassandra read JobOutputs job=64edca6c-9b56-49b8-a4a2-8658fb02357c -> PRIMARY (consistency=LocalQuorum).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=64edca6c-9b56-49b8-a4a2-8658fb02357c started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Cassandra read JobOutputs job=64edca6c-9b56-49b8-a4a2-8658fb02357c -> REPLICA (consistency=LocalOne).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Find Job by id=870354dd-b00f-41e2-8629-953b65fc161c and JobDefinitionId=80c63e30-54cc-4470-8af8-2f6ba2669086 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id 9ecb1694-4698-4371-9c31-ab236de441b7 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Create JobOutput with id=9d535e84-9f91-41d4-a388-67c7dd9e8247 in partition JobId=870354dd-b00f-41e2-8629-953b65fc161c, clustering Date=06/18/2026 20:36:55 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Create Job with id=05cb22ed-fa9d-4b75-b9f5-43345ea1d30a and JobDefinitionId=9ecb1694-4698-4371-9c31-ab236de441b7 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Create JobDefinition and JobDetail with id=be628bfc-58bf-411f-9ff5-b45b836a3f82 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Cassandra write JobOutput 9d535e84-9f91-41d4-a388-67c7dd9e8247 -> PRIMARY (consistency=LocalOne).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos write Job 05cb22ed-fa9d-4b75-b9f5-43345ea1d30a -> PRIMARY (write-time unique key; consistency level N/A).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id 10512396-936f-4090-a355-3744bc8e681d started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] TryClaimNextExecution for JobDefinition 0d8ad69b-4b65-4c9a-9156-72947d3bd30a -> WON the slot.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] DocumentDB read JobDefinition 10512396-936f-4090-a355-3744bc8e681d -> REPLICA (consistency=Eventual/local).
+dbug: Scheduler.BusinessLogic.Concrete.Handlers.ConsistencyDemos.ExecuteJobConsistencyDemoHandler[0] UC2.1 demo run 89: claim for 0d8ad69b-4b65-4c9a-9156-72947d3bd30a -> True.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id 0d8ad69b-4b65-4c9a-9156-72947d3bd30a started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id d6285613-7f75-4458-9484-67bd61216a7d finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id 10512396-936f-4090-a355-3744bc8e681d finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] DocumentDB read JobDefinition 0d8ad69b-4b65-4c9a-9156-72947d3bd30a -> PRIMARY (primary read, default local; correctness from atomic claim).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] TryClaimNextExecution for JobDefinition d6285613-7f75-4458-9484-67bd61216a7d started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] DocumentDB write JobDefinition d6285613-7f75-4458-9484-67bd61216a7d NextExecution -> PRIMARY (atomic findOneAndUpdate, w:majority; claim slot).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] DocumentDB write JobDefinition be628bfc-58bf-411f-9ff5-b45b836a3f82 -> PRIMARY (transaction, w:majority).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id 0d8ad69b-4b65-4c9a-9156-72947d3bd30a started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] DocumentDB read JobDefinition 0d8ad69b-4b65-4c9a-9156-72947d3bd30a -> REPLICA (consistency=Eventual/local).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=64edca6c-9b56-49b8-a4a2-8658fb02357c finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Update Job status to Running with id=37207eb4-6da9-407f-8ebf-1f688a34b33c and JobDefinitionId=32a23329-2242-409c-a5db-fcfdb6737311 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Create JobOutput with id=0e4451bd-e261-48d3-8205-19ccca7b084c in partition JobId=db32b076-4044-45a9-b5c1-de8d487dd230, clustering Date=06/18/2026 20:36:55 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Update Job status to Succeeded with id=37207eb4-6da9-407f-8ebf-1f688a34b33c and JobDefinitionId=32a23329-2242-409c-a5db-fcfdb6737311 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=db32b076-4044-45a9-b5c1-de8d487dd230 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos write Job 37207eb4-6da9-407f-8ebf-1f688a34b33c status -> PRIMARY (Session account default).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Cassandra read JobOutputs job=db32b076-4044-45a9-b5c1-de8d487dd230 -> PRIMARY (consistency=LocalQuorum).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Create JobOutput with id=9d535e84-9f91-41d4-a388-67c7dd9e8247 in partition JobId=870354dd-b00f-41e2-8629-953b65fc161c, clustering Date=06/18/2026 20:36:55 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=64edca6c-9b56-49b8-a4a2-8658fb02357c finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Create JobDefinition and JobDetail with id=2b7c42ee-573c-4a62-af7c-41e9c32c8c4e finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=db32b076-4044-45a9-b5c1-de8d487dd230 started.
+dbug: Scheduler.BusinessLogic.Concrete.Handlers.ConsistencyDemos.ExecuteJobConsistencyDemoHandler[0] UC2.1 demo run 92: seeded definition 2b7c42ee-573c-4a62-af7c-41e9c32c8c4e due now.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=870354dd-b00f-41e2-8629-953b65fc161c started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id 2b7c42ee-573c-4a62-af7c-41e9c32c8c4e started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Cassandra read JobOutputs job=db32b076-4044-45a9-b5c1-de8d487dd230 -> REPLICA (consistency=LocalOne).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] DocumentDB read JobDefinition 2b7c42ee-573c-4a62-af7c-41e9c32c8c4e -> PRIMARY (primary read, default local; correctness from atomic claim).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id 0d8ad69b-4b65-4c9a-9156-72947d3bd30a finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Create Job with id=05cb22ed-fa9d-4b75-b9f5-43345ea1d30a and JobDefinitionId=9ecb1694-4698-4371-9c31-ab236de441b7 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id 10512396-936f-4090-a355-3744bc8e681d finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Update Job status to Running with id=05cb22ed-fa9d-4b75-b9f5-43345ea1d30a and JobDefinitionId=9ecb1694-4698-4371-9c31-ab236de441b7 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Create JobDefinition and JobDetail with id=968f49ce-98e4-4626-8b82-89fb0e6d3382 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Create Job with id=6a84d641-35b2-4135-b9b5-3f850b11a8f7 and JobDefinitionId=10512396-936f-4090-a355-3744bc8e681d started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos write Job 05cb22ed-fa9d-4b75-b9f5-43345ea1d30a status -> PRIMARY (Session account default).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos write Job 6a84d641-35b2-4135-b9b5-3f850b11a8f7 -> PRIMARY (write-time unique key; consistency level N/A).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] TryClaimNextExecution for JobDefinition d6285613-7f75-4458-9484-67bd61216a7d -> WON the slot.
+dbug: Scheduler.BusinessLogic.Concrete.Handlers.ConsistencyDemos.ExecuteJobConsistencyDemoHandler[0] UC2.1 demo run 91: claim for d6285613-7f75-4458-9484-67bd61216a7d -> True.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Cassandra read JobOutputs job=870354dd-b00f-41e2-8629-953b65fc161c -> PRIMARY (consistency=LocalQuorum).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id d6285613-7f75-4458-9484-67bd61216a7d started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] DocumentDB read JobDefinition d6285613-7f75-4458-9484-67bd61216a7d -> PRIMARY (primary read, default local; correctness from atomic claim).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Create JobDefinition and JobDetail with id=3b9baba7-cab9-4a0a-9dc4-88b3f18fa3ba finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=870354dd-b00f-41e2-8629-953b65fc161c started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=db32b076-4044-45a9-b5c1-de8d487dd230 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id 0d8ad69b-4b65-4c9a-9156-72947d3bd30a finished.
+dbug: Scheduler.BusinessLogic.Concrete.Handlers.ConsistencyDemos.ExecuteJobConsistencyDemoHandler[0] UC2.1 demo run 93: seeded definition 3b9baba7-cab9-4a0a-9dc4-88b3f18fa3ba due now.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id 3b9baba7-cab9-4a0a-9dc4-88b3f18fa3ba started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id 2b7c42ee-573c-4a62-af7c-41e9c32c8c4e started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Cassandra read JobOutputs job=870354dd-b00f-41e2-8629-953b65fc161c -> REPLICA (consistency=LocalOne).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Update Job status to Succeeded with id=37207eb4-6da9-407f-8ebf-1f688a34b33c and JobDefinitionId=32a23329-2242-409c-a5db-fcfdb6737311 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] DocumentDB read JobDefinition 2b7c42ee-573c-4a62-af7c-41e9c32c8c4e -> REPLICA (consistency=Eventual/local).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Find Job by id=37207eb4-6da9-407f-8ebf-1f688a34b33c and JobDefinitionId=32a23329-2242-409c-a5db-fcfdb6737311 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos read Job -> PRIMARY (Session via same client - read-your-writes).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] DocumentDB read JobDefinition 3b9baba7-cab9-4a0a-9dc4-88b3f18fa3ba -> PRIMARY (primary read, default local; correctness from atomic claim).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id 2b7c42ee-573c-4a62-af7c-41e9c32c8c4e finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Create Job with id=a0b3a137-3dda-4e26-8216-91b66aefeb2d and JobDefinitionId=0d8ad69b-4b65-4c9a-9156-72947d3bd30a started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=db32b076-4044-45a9-b5c1-de8d487dd230 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] DocumentDB write JobDefinition 968f49ce-98e4-4626-8b82-89fb0e6d3382 -> PRIMARY (transaction, w:majority).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id 3b9baba7-cab9-4a0a-9dc4-88b3f18fa3ba started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=870354dd-b00f-41e2-8629-953b65fc161c finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Update Job status to Running with id=05cb22ed-fa9d-4b75-b9f5-43345ea1d30a and JobDefinitionId=9ecb1694-4698-4371-9c31-ab236de441b7 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] DocumentDB read JobDefinition 3b9baba7-cab9-4a0a-9dc4-88b3f18fa3ba -> REPLICA (consistency=Eventual/local).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Create Job with id=6a84d641-35b2-4135-b9b5-3f850b11a8f7 and JobDefinitionId=10512396-936f-4090-a355-3744bc8e681d finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Update Job status to Succeeded with id=05cb22ed-fa9d-4b75-b9f5-43345ea1d30a and JobDefinitionId=9ecb1694-4698-4371-9c31-ab236de441b7 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Update Job status to Running with id=6a84d641-35b2-4135-b9b5-3f850b11a8f7 and JobDefinitionId=10512396-936f-4090-a355-3744bc8e681d started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos write Job 05cb22ed-fa9d-4b75-b9f5-43345ea1d30a status -> PRIMARY (Session account default).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos write Job 6a84d641-35b2-4135-b9b5-3f850b11a8f7 status -> PRIMARY (Session account default).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id d6285613-7f75-4458-9484-67bd61216a7d finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id d6285613-7f75-4458-9484-67bd61216a7d started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos write Job a0b3a137-3dda-4e26-8216-91b66aefeb2d -> PRIMARY (write-time unique key; consistency level N/A).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] DocumentDB read JobDefinition d6285613-7f75-4458-9484-67bd61216a7d -> REPLICA (consistency=Eventual/local).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Find Job by id=37207eb4-6da9-407f-8ebf-1f688a34b33c and JobDefinitionId=32a23329-2242-409c-a5db-fcfdb6737311 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id 3b9baba7-cab9-4a0a-9dc4-88b3f18fa3ba finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Find Job by id=37207eb4-6da9-407f-8ebf-1f688a34b33c and JobDefinitionId=32a23329-2242-409c-a5db-fcfdb6737311 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos read Job -> REPLICA (consistency=Eventual).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id 2b7c42ee-573c-4a62-af7c-41e9c32c8c4e finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] TryClaimNextExecution for JobDefinition 2b7c42ee-573c-4a62-af7c-41e9c32c8c4e started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] DocumentDB write JobDefinition 2b7c42ee-573c-4a62-af7c-41e9c32c8c4e NextExecution -> PRIMARY (atomic findOneAndUpdate, w:majority; claim slot).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Create JobDefinition and JobDetail with id=be628bfc-58bf-411f-9ff5-b45b836a3f82 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=870354dd-b00f-41e2-8629-953b65fc161c finished.
+dbug: Scheduler.BusinessLogic.Concrete.Handlers.ConsistencyDemos.ExecuteJobConsistencyDemoHandler[0] UC2.1 demo run 94: seeded definition be628bfc-58bf-411f-9ff5-b45b836a3f82 due now.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id be628bfc-58bf-411f-9ff5-b45b836a3f82 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] DocumentDB read JobDefinition be628bfc-58bf-411f-9ff5-b45b836a3f82 -> PRIMARY (primary read, default local; correctness from atomic claim).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Create JobDefinition and JobDetail with id=eb90ca5a-dd01-4c40-b993-40f3f1bb2899 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] DocumentDB write JobDefinition eb90ca5a-dd01-4c40-b993-40f3f1bb2899 -> PRIMARY (transaction, w:majority).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id 3b9baba7-cab9-4a0a-9dc4-88b3f18fa3ba finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Update Job status to Running with id=6a84d641-35b2-4135-b9b5-3f850b11a8f7 and JobDefinitionId=10512396-936f-4090-a355-3744bc8e681d finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Update Job status to Succeeded with id=05cb22ed-fa9d-4b75-b9f5-43345ea1d30a and JobDefinitionId=9ecb1694-4698-4371-9c31-ab236de441b7 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] TryClaimNextExecution for JobDefinition 3b9baba7-cab9-4a0a-9dc4-88b3f18fa3ba started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Update Job status to Succeeded with id=6a84d641-35b2-4135-b9b5-3f850b11a8f7 and JobDefinitionId=10512396-936f-4090-a355-3744bc8e681d started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] DocumentDB write JobDefinition 3b9baba7-cab9-4a0a-9dc4-88b3f18fa3ba NextExecution -> PRIMARY (atomic findOneAndUpdate, w:majority; claim slot).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos write Job 6a84d641-35b2-4135-b9b5-3f850b11a8f7 status -> PRIMARY (Session account default).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Find Job by id=05cb22ed-fa9d-4b75-b9f5-43345ea1d30a and JobDefinitionId=9ecb1694-4698-4371-9c31-ab236de441b7 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos read Job -> PRIMARY (Session via same client - read-your-writes).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id be628bfc-58bf-411f-9ff5-b45b836a3f82 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id d6285613-7f75-4458-9484-67bd61216a7d finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Create Job with id=a0b3a137-3dda-4e26-8216-91b66aefeb2d and JobDefinitionId=0d8ad69b-4b65-4c9a-9156-72947d3bd30a finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Create Job with id=ac2491b8-cdfd-473d-a60a-9219d85390b1 and JobDefinitionId=d6285613-7f75-4458-9484-67bd61216a7d started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] DocumentDB read JobDefinition be628bfc-58bf-411f-9ff5-b45b836a3f82 -> REPLICA (consistency=Eventual/local).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos write Job ac2491b8-cdfd-473d-a60a-9219d85390b1 -> PRIMARY (write-time unique key; consistency level N/A).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Find Job by id=37207eb4-6da9-407f-8ebf-1f688a34b33c and JobDefinitionId=32a23329-2242-409c-a5db-fcfdb6737311 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Create JobOutput with id=c8b3dbc6-9b2e-43c9-a5e0-d957e4496347 in partition JobId=37207eb4-6da9-407f-8ebf-1f688a34b33c, clustering Date=06/18/2026 20:36:55 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] TryClaimNextExecution for JobDefinition 2b7c42ee-573c-4a62-af7c-41e9c32c8c4e -> WON the slot.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Update Job status to Running with id=a0b3a137-3dda-4e26-8216-91b66aefeb2d and JobDefinitionId=0d8ad69b-4b65-4c9a-9156-72947d3bd30a started.
+dbug: Scheduler.BusinessLogic.Concrete.Handlers.ConsistencyDemos.ExecuteJobConsistencyDemoHandler[0] UC2.1 demo run 92: claim for 2b7c42ee-573c-4a62-af7c-41e9c32c8c4e -> True.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id be628bfc-58bf-411f-9ff5-b45b836a3f82 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Cassandra write JobOutput c8b3dbc6-9b2e-43c9-a5e0-d957e4496347 -> PRIMARY (consistency=LocalOne).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id 2b7c42ee-573c-4a62-af7c-41e9c32c8c4e started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Find Job by id=05cb22ed-fa9d-4b75-b9f5-43345ea1d30a and JobDefinitionId=9ecb1694-4698-4371-9c31-ab236de441b7 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] DocumentDB read JobDefinition 2b7c42ee-573c-4a62-af7c-41e9c32c8c4e -> PRIMARY (primary read, default local; correctness from atomic claim).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos write Job a0b3a137-3dda-4e26-8216-91b66aefeb2d status -> PRIMARY (Session account default).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos read Job -> REPLICA (consistency=Eventual).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Create JobDefinition and JobDetail with id=e49711ca-eabd-41e6-b63b-3efb12dfa922 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] DocumentDB write JobDefinition e49711ca-eabd-41e6-b63b-3efb12dfa922 -> PRIMARY (transaction, w:majority).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] TryClaimNextExecution for JobDefinition 3b9baba7-cab9-4a0a-9dc4-88b3f18fa3ba -> WON the slot.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Find Job by id=05cb22ed-fa9d-4b75-b9f5-43345ea1d30a and JobDefinitionId=9ecb1694-4698-4371-9c31-ab236de441b7 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Update Job status to Succeeded with id=6a84d641-35b2-4135-b9b5-3f850b11a8f7 and JobDefinitionId=10512396-936f-4090-a355-3744bc8e681d finished.
+dbug: Scheduler.BusinessLogic.Concrete.Handlers.ConsistencyDemos.ExecuteJobConsistencyDemoHandler[0] UC2.1 demo run 93: claim for 3b9baba7-cab9-4a0a-9dc4-88b3f18fa3ba -> True.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Find Job by id=6a84d641-35b2-4135-b9b5-3f850b11a8f7 and JobDefinitionId=10512396-936f-4090-a355-3744bc8e681d started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id 3b9baba7-cab9-4a0a-9dc4-88b3f18fa3ba started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos read Job -> PRIMARY (Session via same client - read-your-writes).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] DocumentDB read JobDefinition 3b9baba7-cab9-4a0a-9dc4-88b3f18fa3ba -> PRIMARY (primary read, default local; correctness from atomic claim).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Create Job with id=ac2491b8-cdfd-473d-a60a-9219d85390b1 and JobDefinitionId=d6285613-7f75-4458-9484-67bd61216a7d finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Update Job status to Running with id=ac2491b8-cdfd-473d-a60a-9219d85390b1 and JobDefinitionId=d6285613-7f75-4458-9484-67bd61216a7d started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos write Job ac2491b8-cdfd-473d-a60a-9219d85390b1 status -> PRIMARY (Session account default).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id be628bfc-58bf-411f-9ff5-b45b836a3f82 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] TryClaimNextExecution for JobDefinition be628bfc-58bf-411f-9ff5-b45b836a3f82 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id 2b7c42ee-573c-4a62-af7c-41e9c32c8c4e started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id 2b7c42ee-573c-4a62-af7c-41e9c32c8c4e finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] DocumentDB write JobDefinition be628bfc-58bf-411f-9ff5-b45b836a3f82 NextExecution -> PRIMARY (atomic findOneAndUpdate, w:majority; claim slot).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] DocumentDB read JobDefinition 2b7c42ee-573c-4a62-af7c-41e9c32c8c4e -> REPLICA (consistency=Eventual/local).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Create JobDefinition and JobDetail with id=c98fb845-a76e-40eb-bc18-851a0c61e8c0 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Create JobOutput with id=c8b3dbc6-9b2e-43c9-a5e0-d957e4496347 in partition JobId=37207eb4-6da9-407f-8ebf-1f688a34b33c, clustering Date=06/18/2026 20:36:55 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=37207eb4-6da9-407f-8ebf-1f688a34b33c started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] DocumentDB write JobDefinition c98fb845-a76e-40eb-bc18-851a0c61e8c0 -> PRIMARY (transaction, w:majority).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Create JobDefinition and JobDetail with id=968f49ce-98e4-4626-8b82-89fb0e6d3382 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Cassandra read JobOutputs job=37207eb4-6da9-407f-8ebf-1f688a34b33c -> PRIMARY (consistency=LocalQuorum).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id 3b9baba7-cab9-4a0a-9dc4-88b3f18fa3ba started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Update Job status to Running with id=a0b3a137-3dda-4e26-8216-91b66aefeb2d and JobDefinitionId=0d8ad69b-4b65-4c9a-9156-72947d3bd30a finished.
+dbug: Scheduler.BusinessLogic.Concrete.Handlers.ConsistencyDemos.ExecuteJobConsistencyDemoHandler[0] UC2.1 demo run 95: seeded definition 968f49ce-98e4-4626-8b82-89fb0e6d3382 due now.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] DocumentDB read JobDefinition 3b9baba7-cab9-4a0a-9dc4-88b3f18fa3ba -> REPLICA (consistency=Eventual/local).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Find Job by id=6a84d641-35b2-4135-b9b5-3f850b11a8f7 and JobDefinitionId=10512396-936f-4090-a355-3744bc8e681d started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id 968f49ce-98e4-4626-8b82-89fb0e6d3382 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id 3b9baba7-cab9-4a0a-9dc4-88b3f18fa3ba finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Find Job by id=05cb22ed-fa9d-4b75-b9f5-43345ea1d30a and JobDefinitionId=9ecb1694-4698-4371-9c31-ab236de441b7 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Find Job by id=6a84d641-35b2-4135-b9b5-3f850b11a8f7 and JobDefinitionId=10512396-936f-4090-a355-3744bc8e681d finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Update Job status to Succeeded with id=a0b3a137-3dda-4e26-8216-91b66aefeb2d and JobDefinitionId=0d8ad69b-4b65-4c9a-9156-72947d3bd30a started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=37207eb4-6da9-407f-8ebf-1f688a34b33c started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] DocumentDB read JobDefinition 968f49ce-98e4-4626-8b82-89fb0e6d3382 -> PRIMARY (primary read, default local; correctness from atomic claim).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Cassandra read JobOutputs job=37207eb4-6da9-407f-8ebf-1f688a34b33c -> REPLICA (consistency=LocalOne).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos write Job a0b3a137-3dda-4e26-8216-91b66aefeb2d status -> PRIMARY (Session account default).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Update Job status to Running with id=ac2491b8-cdfd-473d-a60a-9219d85390b1 and JobDefinitionId=d6285613-7f75-4458-9484-67bd61216a7d finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos read Job -> REPLICA (consistency=Eventual).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Update Job status to Succeeded with id=ac2491b8-cdfd-473d-a60a-9219d85390b1 and JobDefinitionId=d6285613-7f75-4458-9484-67bd61216a7d started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos write Job ac2491b8-cdfd-473d-a60a-9219d85390b1 status -> PRIMARY (Session account default).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] TryClaimNextExecution for JobDefinition be628bfc-58bf-411f-9ff5-b45b836a3f82 -> WON the slot.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Create JobDefinition and JobDetail with id=eb90ca5a-dd01-4c40-b993-40f3f1bb2899 finished.
+dbug: Scheduler.BusinessLogic.Concrete.Handlers.ConsistencyDemos.ExecuteJobConsistencyDemoHandler[0] UC2.1 demo run 94: claim for be628bfc-58bf-411f-9ff5-b45b836a3f82 -> True.
+dbug: Scheduler.BusinessLogic.Concrete.Handlers.ConsistencyDemos.ExecuteJobConsistencyDemoHandler[0] UC2.1 demo run 96: seeded definition eb90ca5a-dd01-4c40-b993-40f3f1bb2899 due now.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id be628bfc-58bf-411f-9ff5-b45b836a3f82 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id eb90ca5a-dd01-4c40-b993-40f3f1bb2899 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id 2b7c42ee-573c-4a62-af7c-41e9c32c8c4e finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] DocumentDB read JobDefinition be628bfc-58bf-411f-9ff5-b45b836a3f82 -> PRIMARY (primary read, default local; correctness from atomic claim).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Create Job with id=f3deca69-0800-4474-beb8-f0e1a6eede37 and JobDefinitionId=2b7c42ee-573c-4a62-af7c-41e9c32c8c4e started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id 968f49ce-98e4-4626-8b82-89fb0e6d3382 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=37207eb4-6da9-407f-8ebf-1f688a34b33c finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos write Job f3deca69-0800-4474-beb8-f0e1a6eede37 -> PRIMARY (write-time unique key; consistency level N/A).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] DocumentDB read JobDefinition 968f49ce-98e4-4626-8b82-89fb0e6d3382 -> REPLICA (consistency=Eventual/local).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] DocumentDB read JobDefinition eb90ca5a-dd01-4c40-b993-40f3f1bb2899 -> PRIMARY (primary read, default local; correctness from atomic claim).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id 968f49ce-98e4-4626-8b82-89fb0e6d3382 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id 3b9baba7-cab9-4a0a-9dc4-88b3f18fa3ba finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Create Job with id=69029cc0-ddb3-42e0-bc47-070425042d84 and JobDefinitionId=3b9baba7-cab9-4a0a-9dc4-88b3f18fa3ba started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Create JobOutput with id=20337191-8959-4e01-ac2f-aa1add1b28dc in partition JobId=05cb22ed-fa9d-4b75-b9f5-43345ea1d30a, clustering Date=06/18/2026 20:36:55 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos write Job 69029cc0-ddb3-42e0-bc47-070425042d84 -> PRIMARY (write-time unique key; consistency level N/A).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Cassandra write JobOutput 20337191-8959-4e01-ac2f-aa1add1b28dc -> PRIMARY (consistency=LocalOne).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id be628bfc-58bf-411f-9ff5-b45b836a3f82 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Update Job status to Succeeded with id=a0b3a137-3dda-4e26-8216-91b66aefeb2d and JobDefinitionId=0d8ad69b-4b65-4c9a-9156-72947d3bd30a finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] DocumentDB read JobDefinition be628bfc-58bf-411f-9ff5-b45b836a3f82 -> REPLICA (consistency=Eventual/local).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=37207eb4-6da9-407f-8ebf-1f688a34b33c finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Create JobDefinition and JobDetail with id=e49711ca-eabd-41e6-b63b-3efb12dfa922 finished.
+dbug: Scheduler.BusinessLogic.Concrete.Handlers.ConsistencyDemos.ExecuteJobConsistencyDemoHandler[0] UC2.1 demo run 97: seeded definition e49711ca-eabd-41e6-b63b-3efb12dfa922 due now.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id e49711ca-eabd-41e6-b63b-3efb12dfa922 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id be628bfc-58bf-411f-9ff5-b45b836a3f82 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Find Job by id=6a84d641-35b2-4135-b9b5-3f850b11a8f7 and JobDefinitionId=10512396-936f-4090-a355-3744bc8e681d finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Find Job by id=a0b3a137-3dda-4e26-8216-91b66aefeb2d and JobDefinitionId=0d8ad69b-4b65-4c9a-9156-72947d3bd30a started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] DocumentDB read JobDefinition e49711ca-eabd-41e6-b63b-3efb12dfa922 -> PRIMARY (primary read, default local; correctness from atomic claim).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Create JobOutput with id=38ee8e31-3609-4bc5-964f-04c9e1e40e0c in partition JobId=6a84d641-35b2-4135-b9b5-3f850b11a8f7, clustering Date=06/18/2026 20:36:55 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos read Job -> PRIMARY (Session via same client - read-your-writes).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Cassandra write JobOutput 38ee8e31-3609-4bc5-964f-04c9e1e40e0c -> PRIMARY (consistency=LocalOne).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Create Job with id=f3deca69-0800-4474-beb8-f0e1a6eede37 and JobDefinitionId=2b7c42ee-573c-4a62-af7c-41e9c32c8c4e finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id eb90ca5a-dd01-4c40-b993-40f3f1bb2899 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Update Job status to Running with id=f3deca69-0800-4474-beb8-f0e1a6eede37 and JobDefinitionId=2b7c42ee-573c-4a62-af7c-41e9c32c8c4e started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id eb90ca5a-dd01-4c40-b993-40f3f1bb2899 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id 968f49ce-98e4-4626-8b82-89fb0e6d3382 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] DocumentDB read JobDefinition eb90ca5a-dd01-4c40-b993-40f3f1bb2899 -> REPLICA (consistency=Eventual/local).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] TryClaimNextExecution for JobDefinition 968f49ce-98e4-4626-8b82-89fb0e6d3382 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Update Job status to Succeeded with id=ac2491b8-cdfd-473d-a60a-9219d85390b1 and JobDefinitionId=d6285613-7f75-4458-9484-67bd61216a7d finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Find Job by id=ac2491b8-cdfd-473d-a60a-9219d85390b1 and JobDefinitionId=d6285613-7f75-4458-9484-67bd61216a7d started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] DocumentDB write JobDefinition 968f49ce-98e4-4626-8b82-89fb0e6d3382 NextExecution -> PRIMARY (atomic findOneAndUpdate, w:majority; claim slot).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos read Job -> PRIMARY (Session via same client - read-your-writes).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Create JobOutput with id=20337191-8959-4e01-ac2f-aa1add1b28dc in partition JobId=05cb22ed-fa9d-4b75-b9f5-43345ea1d30a, clustering Date=06/18/2026 20:36:55 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Create Job with id=69029cc0-ddb3-42e0-bc47-070425042d84 and JobDefinitionId=3b9baba7-cab9-4a0a-9dc4-88b3f18fa3ba finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Update Job status to Running with id=69029cc0-ddb3-42e0-bc47-070425042d84 and JobDefinitionId=3b9baba7-cab9-4a0a-9dc4-88b3f18fa3ba started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=05cb22ed-fa9d-4b75-b9f5-43345ea1d30a started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos write Job 69029cc0-ddb3-42e0-bc47-070425042d84 status -> PRIMARY (Session account default).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id e49711ca-eabd-41e6-b63b-3efb12dfa922 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Cassandra read JobOutputs job=05cb22ed-fa9d-4b75-b9f5-43345ea1d30a -> PRIMARY (consistency=LocalQuorum).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] DocumentDB read JobDefinition e49711ca-eabd-41e6-b63b-3efb12dfa922 -> REPLICA (consistency=Eventual/local).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id e49711ca-eabd-41e6-b63b-3efb12dfa922 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id be628bfc-58bf-411f-9ff5-b45b836a3f82 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=05cb22ed-fa9d-4b75-b9f5-43345ea1d30a started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos write Job f3deca69-0800-4474-beb8-f0e1a6eede37 status -> PRIMARY (Session account default).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Cassandra read JobOutputs job=05cb22ed-fa9d-4b75-b9f5-43345ea1d30a -> REPLICA (consistency=LocalOne).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Find Job by id=a0b3a137-3dda-4e26-8216-91b66aefeb2d and JobDefinitionId=0d8ad69b-4b65-4c9a-9156-72947d3bd30a finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Create JobOutput with id=38ee8e31-3609-4bc5-964f-04c9e1e40e0c in partition JobId=6a84d641-35b2-4135-b9b5-3f850b11a8f7, clustering Date=06/18/2026 20:36:55 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Create Job with id=2fce50f4-5f12-4883-9414-977d96279c96 and JobDefinitionId=be628bfc-58bf-411f-9ff5-b45b836a3f82 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=6a84d641-35b2-4135-b9b5-3f850b11a8f7 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos write Job 2fce50f4-5f12-4883-9414-977d96279c96 -> PRIMARY (write-time unique key; consistency level N/A).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Find Job by id=ac2491b8-cdfd-473d-a60a-9219d85390b1 and JobDefinitionId=d6285613-7f75-4458-9484-67bd61216a7d started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Cassandra read JobOutputs job=6a84d641-35b2-4135-b9b5-3f850b11a8f7 -> PRIMARY (consistency=LocalQuorum).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos read Job -> REPLICA (consistency=Eventual).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=6a84d641-35b2-4135-b9b5-3f850b11a8f7 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Cassandra read JobOutputs job=6a84d641-35b2-4135-b9b5-3f850b11a8f7 -> REPLICA (consistency=LocalOne).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] TryClaimNextExecution for JobDefinition 968f49ce-98e4-4626-8b82-89fb0e6d3382 -> WON the slot.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Find Job by id=ac2491b8-cdfd-473d-a60a-9219d85390b1 and JobDefinitionId=d6285613-7f75-4458-9484-67bd61216a7d finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Find Job by id=a0b3a137-3dda-4e26-8216-91b66aefeb2d and JobDefinitionId=0d8ad69b-4b65-4c9a-9156-72947d3bd30a started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id eb90ca5a-dd01-4c40-b993-40f3f1bb2899 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] TryClaimNextExecution for JobDefinition eb90ca5a-dd01-4c40-b993-40f3f1bb2899 started.
+dbug: Scheduler.BusinessLogic.Concrete.Handlers.ConsistencyDemos.ExecuteJobConsistencyDemoHandler[0] UC2.1 demo run 95: claim for 968f49ce-98e4-4626-8b82-89fb0e6d3382 -> True.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] DocumentDB write JobDefinition eb90ca5a-dd01-4c40-b993-40f3f1bb2899 NextExecution -> PRIMARY (atomic findOneAndUpdate, w:majority; claim slot).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id 968f49ce-98e4-4626-8b82-89fb0e6d3382 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] DocumentDB read JobDefinition 968f49ce-98e4-4626-8b82-89fb0e6d3382 -> PRIMARY (primary read, default local; correctness from atomic claim).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Update Job status to Running with id=69029cc0-ddb3-42e0-bc47-070425042d84 and JobDefinitionId=3b9baba7-cab9-4a0a-9dc4-88b3f18fa3ba finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos read Job -> REPLICA (consistency=Eventual).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=05cb22ed-fa9d-4b75-b9f5-43345ea1d30a finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Update Job status to Succeeded with id=69029cc0-ddb3-42e0-bc47-070425042d84 and JobDefinitionId=3b9baba7-cab9-4a0a-9dc4-88b3f18fa3ba started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id e49711ca-eabd-41e6-b63b-3efb12dfa922 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Update Job status to Running with id=f3deca69-0800-4474-beb8-f0e1a6eede37 and JobDefinitionId=2b7c42ee-573c-4a62-af7c-41e9c32c8c4e finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos write Job 69029cc0-ddb3-42e0-bc47-070425042d84 status -> PRIMARY (Session account default).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] TryClaimNextExecution for JobDefinition e49711ca-eabd-41e6-b63b-3efb12dfa922 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] DocumentDB write JobDefinition e49711ca-eabd-41e6-b63b-3efb12dfa922 NextExecution -> PRIMARY (atomic findOneAndUpdate, w:majority; claim slot).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Update Job status to Succeeded with id=f3deca69-0800-4474-beb8-f0e1a6eede37 and JobDefinitionId=2b7c42ee-573c-4a62-af7c-41e9c32c8c4e started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=6a84d641-35b2-4135-b9b5-3f850b11a8f7 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos write Job f3deca69-0800-4474-beb8-f0e1a6eede37 status -> PRIMARY (Session account default).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=05cb22ed-fa9d-4b75-b9f5-43345ea1d30a finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Create Job with id=2fce50f4-5f12-4883-9414-977d96279c96 and JobDefinitionId=be628bfc-58bf-411f-9ff5-b45b836a3f82 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Update Job status to Running with id=2fce50f4-5f12-4883-9414-977d96279c96 and JobDefinitionId=be628bfc-58bf-411f-9ff5-b45b836a3f82 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos write Job 2fce50f4-5f12-4883-9414-977d96279c96 status -> PRIMARY (Session account default).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Find Job by id=ac2491b8-cdfd-473d-a60a-9219d85390b1 and JobDefinitionId=d6285613-7f75-4458-9484-67bd61216a7d finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Create JobOutput with id=9e5e2939-639e-4763-93b0-117a00d4d282 in partition JobId=ac2491b8-cdfd-473d-a60a-9219d85390b1, clustering Date=06/18/2026 20:36:55 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Cassandra write JobOutput 9e5e2939-639e-4763-93b0-117a00d4d282 -> PRIMARY (consistency=LocalOne).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] TryClaimNextExecution for JobDefinition eb90ca5a-dd01-4c40-b993-40f3f1bb2899 -> WON the slot.
+dbug: Scheduler.BusinessLogic.Concrete.Handlers.ConsistencyDemos.ExecuteJobConsistencyDemoHandler[0] UC2.1 demo run 96: claim for eb90ca5a-dd01-4c40-b993-40f3f1bb2899 -> True.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=6a84d641-35b2-4135-b9b5-3f850b11a8f7 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id eb90ca5a-dd01-4c40-b993-40f3f1bb2899 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] DocumentDB read JobDefinition eb90ca5a-dd01-4c40-b993-40f3f1bb2899 -> PRIMARY (primary read, default local; correctness from atomic claim).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id 968f49ce-98e4-4626-8b82-89fb0e6d3382 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id 968f49ce-98e4-4626-8b82-89fb0e6d3382 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] DocumentDB read JobDefinition 968f49ce-98e4-4626-8b82-89fb0e6d3382 -> REPLICA (consistency=Eventual/local).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Find Job by id=a0b3a137-3dda-4e26-8216-91b66aefeb2d and JobDefinitionId=0d8ad69b-4b65-4c9a-9156-72947d3bd30a finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Create JobOutput with id=29a032cd-53de-4cb8-ad15-04a5ed3c4da1 in partition JobId=a0b3a137-3dda-4e26-8216-91b66aefeb2d, clustering Date=06/18/2026 20:36:55 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Cassandra write JobOutput 29a032cd-53de-4cb8-ad15-04a5ed3c4da1 -> PRIMARY (consistency=LocalOne).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Update Job status to Succeeded with id=69029cc0-ddb3-42e0-bc47-070425042d84 and JobDefinitionId=3b9baba7-cab9-4a0a-9dc4-88b3f18fa3ba finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] TryClaimNextExecution for JobDefinition e49711ca-eabd-41e6-b63b-3efb12dfa922 -> WON the slot.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Find Job by id=69029cc0-ddb3-42e0-bc47-070425042d84 and JobDefinitionId=3b9baba7-cab9-4a0a-9dc4-88b3f18fa3ba started.
+dbug: Scheduler.BusinessLogic.Concrete.Handlers.ConsistencyDemos.ExecuteJobConsistencyDemoHandler[0] UC2.1 demo run 97: claim for e49711ca-eabd-41e6-b63b-3efb12dfa922 -> True.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos read Job -> PRIMARY (Session via same client - read-your-writes).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id e49711ca-eabd-41e6-b63b-3efb12dfa922 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Create JobDefinition and JobDetail with id=c3cb77b7-3929-4742-aea2-60555710c55b started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] DocumentDB read JobDefinition e49711ca-eabd-41e6-b63b-3efb12dfa922 -> PRIMARY (primary read, default local; correctness from atomic claim).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Update Job status to Succeeded with id=f3deca69-0800-4474-beb8-f0e1a6eede37 and JobDefinitionId=2b7c42ee-573c-4a62-af7c-41e9c32c8c4e finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] DocumentDB write JobDefinition c3cb77b7-3929-4742-aea2-60555710c55b -> PRIMARY (transaction, w:majority).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Update Job status to Running with id=2fce50f4-5f12-4883-9414-977d96279c96 and JobDefinitionId=be628bfc-58bf-411f-9ff5-b45b836a3f82 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Find Job by id=f3deca69-0800-4474-beb8-f0e1a6eede37 and JobDefinitionId=2b7c42ee-573c-4a62-af7c-41e9c32c8c4e started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Update Job status to Succeeded with id=2fce50f4-5f12-4883-9414-977d96279c96 and JobDefinitionId=be628bfc-58bf-411f-9ff5-b45b836a3f82 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Create JobOutput with id=9e5e2939-639e-4763-93b0-117a00d4d282 in partition JobId=ac2491b8-cdfd-473d-a60a-9219d85390b1, clustering Date=06/18/2026 20:36:55 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos read Job -> PRIMARY (Session via same client - read-your-writes).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id eb90ca5a-dd01-4c40-b993-40f3f1bb2899 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=ac2491b8-cdfd-473d-a60a-9219d85390b1 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id eb90ca5a-dd01-4c40-b993-40f3f1bb2899 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos write Job 2fce50f4-5f12-4883-9414-977d96279c96 status -> PRIMARY (Session account default).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Cassandra read JobOutputs job=ac2491b8-cdfd-473d-a60a-9219d85390b1 -> PRIMARY (consistency=LocalQuorum).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] DocumentDB read JobDefinition eb90ca5a-dd01-4c40-b993-40f3f1bb2899 -> REPLICA (consistency=Eventual/local).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=ac2491b8-cdfd-473d-a60a-9219d85390b1 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Cassandra read JobOutputs job=ac2491b8-cdfd-473d-a60a-9219d85390b1 -> REPLICA (consistency=LocalOne).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Create JobOutput with id=29a032cd-53de-4cb8-ad15-04a5ed3c4da1 in partition JobId=a0b3a137-3dda-4e26-8216-91b66aefeb2d, clustering Date=06/18/2026 20:36:55 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=a0b3a137-3dda-4e26-8216-91b66aefeb2d started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id 968f49ce-98e4-4626-8b82-89fb0e6d3382 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Cassandra read JobOutputs job=a0b3a137-3dda-4e26-8216-91b66aefeb2d -> PRIMARY (consistency=LocalQuorum).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Create Job with id=da7fda4a-ff76-4033-bce6-cc5da44e0258 and JobDefinitionId=968f49ce-98e4-4626-8b82-89fb0e6d3382 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Find Job by id=69029cc0-ddb3-42e0-bc47-070425042d84 and JobDefinitionId=3b9baba7-cab9-4a0a-9dc4-88b3f18fa3ba started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Find Job by id=69029cc0-ddb3-42e0-bc47-070425042d84 and JobDefinitionId=3b9baba7-cab9-4a0a-9dc4-88b3f18fa3ba finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=a0b3a137-3dda-4e26-8216-91b66aefeb2d started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos write Job da7fda4a-ff76-4033-bce6-cc5da44e0258 -> PRIMARY (write-time unique key; consistency level N/A).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Cassandra read JobOutputs job=a0b3a137-3dda-4e26-8216-91b66aefeb2d -> REPLICA (consistency=LocalOne).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos read Job -> REPLICA (consistency=Eventual).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id e49711ca-eabd-41e6-b63b-3efb12dfa922 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] DocumentDB read JobDefinition e49711ca-eabd-41e6-b63b-3efb12dfa922 -> REPLICA (consistency=Eventual/local).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=ac2491b8-cdfd-473d-a60a-9219d85390b1 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id e49711ca-eabd-41e6-b63b-3efb12dfa922 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Update Job status to Succeeded with id=2fce50f4-5f12-4883-9414-977d96279c96 and JobDefinitionId=be628bfc-58bf-411f-9ff5-b45b836a3f82 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Find Job by id=2fce50f4-5f12-4883-9414-977d96279c96 and JobDefinitionId=be628bfc-58bf-411f-9ff5-b45b836a3f82 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos read Job -> PRIMARY (Session via same client - read-your-writes).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id eb90ca5a-dd01-4c40-b993-40f3f1bb2899 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=a0b3a137-3dda-4e26-8216-91b66aefeb2d finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Create JobDefinition and JobDetail with id=c98fb845-a76e-40eb-bc18-851a0c61e8c0 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Create Job with id=706689d5-fada-4b14-9068-f551842d9a62 and JobDefinitionId=eb90ca5a-dd01-4c40-b993-40f3f1bb2899 started.
+dbug: Scheduler.BusinessLogic.Concrete.Handlers.ConsistencyDemos.ExecuteJobConsistencyDemoHandler[0] UC2.1 demo run 98: seeded definition c98fb845-a76e-40eb-bc18-851a0c61e8c0 due now.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos write Job 706689d5-fada-4b14-9068-f551842d9a62 -> PRIMARY (write-time unique key; consistency level N/A).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=ac2491b8-cdfd-473d-a60a-9219d85390b1 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id c98fb845-a76e-40eb-bc18-851a0c61e8c0 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] DocumentDB read JobDefinition c98fb845-a76e-40eb-bc18-851a0c61e8c0 -> PRIMARY (primary read, default local; correctness from atomic claim).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Find Job by id=f3deca69-0800-4474-beb8-f0e1a6eede37 and JobDefinitionId=2b7c42ee-573c-4a62-af7c-41e9c32c8c4e finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Create Job with id=da7fda4a-ff76-4033-bce6-cc5da44e0258 and JobDefinitionId=968f49ce-98e4-4626-8b82-89fb0e6d3382 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Find Job by id=f3deca69-0800-4474-beb8-f0e1a6eede37 and JobDefinitionId=2b7c42ee-573c-4a62-af7c-41e9c32c8c4e started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Update Job status to Running with id=da7fda4a-ff76-4033-bce6-cc5da44e0258 and JobDefinitionId=968f49ce-98e4-4626-8b82-89fb0e6d3382 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Find Job by id=2fce50f4-5f12-4883-9414-977d96279c96 and JobDefinitionId=be628bfc-58bf-411f-9ff5-b45b836a3f82 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos write Job da7fda4a-ff76-4033-bce6-cc5da44e0258 status -> PRIMARY (Session account default).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=a0b3a137-3dda-4e26-8216-91b66aefeb2d finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos read Job -> REPLICA (consistency=Eventual).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Find Job by id=69029cc0-ddb3-42e0-bc47-070425042d84 and JobDefinitionId=3b9baba7-cab9-4a0a-9dc4-88b3f18fa3ba finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos read Job -> REPLICA (consistency=Eventual).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id e49711ca-eabd-41e6-b63b-3efb12dfa922 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Create JobOutput with id=ac5540b4-ef20-41f0-9509-7651479895f7 in partition JobId=69029cc0-ddb3-42e0-bc47-070425042d84, clustering Date=06/18/2026 20:36:55 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Create Job with id=b839c3e1-0b76-48db-a19b-9996f0814dba and JobDefinitionId=e49711ca-eabd-41e6-b63b-3efb12dfa922 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos write Job b839c3e1-0b76-48db-a19b-9996f0814dba -> PRIMARY (write-time unique key; consistency level N/A).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Find Job by id=2fce50f4-5f12-4883-9414-977d96279c96 and JobDefinitionId=be628bfc-58bf-411f-9ff5-b45b836a3f82 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Cassandra write JobOutput ac5540b4-ef20-41f0-9509-7651479895f7 -> PRIMARY (consistency=LocalOne).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id c98fb845-a76e-40eb-bc18-851a0c61e8c0 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id c98fb845-a76e-40eb-bc18-851a0c61e8c0 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] DocumentDB read JobDefinition c98fb845-a76e-40eb-bc18-851a0c61e8c0 -> REPLICA (consistency=Eventual/local).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Create Job with id=706689d5-fada-4b14-9068-f551842d9a62 and JobDefinitionId=eb90ca5a-dd01-4c40-b993-40f3f1bb2899 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Update Job status to Running with id=706689d5-fada-4b14-9068-f551842d9a62 and JobDefinitionId=eb90ca5a-dd01-4c40-b993-40f3f1bb2899 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos write Job 706689d5-fada-4b14-9068-f551842d9a62 status -> PRIMARY (Session account default).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Create JobDefinition and JobDetail with id=c3cb77b7-3929-4742-aea2-60555710c55b finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Update Job status to Running with id=da7fda4a-ff76-4033-bce6-cc5da44e0258 and JobDefinitionId=968f49ce-98e4-4626-8b82-89fb0e6d3382 finished.
+dbug: Scheduler.BusinessLogic.Concrete.Handlers.ConsistencyDemos.ExecuteJobConsistencyDemoHandler[0] UC2.1 demo run 99: seeded definition c3cb77b7-3929-4742-aea2-60555710c55b due now.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Update Job status to Succeeded with id=da7fda4a-ff76-4033-bce6-cc5da44e0258 and JobDefinitionId=968f49ce-98e4-4626-8b82-89fb0e6d3382 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id c3cb77b7-3929-4742-aea2-60555710c55b started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos write Job da7fda4a-ff76-4033-bce6-cc5da44e0258 status -> PRIMARY (Session account default).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] DocumentDB read JobDefinition c3cb77b7-3929-4742-aea2-60555710c55b -> PRIMARY (primary read, default local; correctness from atomic claim).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Find Job by id=f3deca69-0800-4474-beb8-f0e1a6eede37 and JobDefinitionId=2b7c42ee-573c-4a62-af7c-41e9c32c8c4e finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Create JobOutput with id=36e7d43e-3d52-4ecd-b56b-887c17a400d9 in partition JobId=f3deca69-0800-4474-beb8-f0e1a6eede37, clustering Date=06/18/2026 20:36:55 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Cassandra write JobOutput 36e7d43e-3d52-4ecd-b56b-887c17a400d9 -> PRIMARY (consistency=LocalOne).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Create Job with id=b839c3e1-0b76-48db-a19b-9996f0814dba and JobDefinitionId=e49711ca-eabd-41e6-b63b-3efb12dfa922 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Create JobOutput with id=ac5540b4-ef20-41f0-9509-7651479895f7 in partition JobId=69029cc0-ddb3-42e0-bc47-070425042d84, clustering Date=06/18/2026 20:36:55 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Find Job by id=2fce50f4-5f12-4883-9414-977d96279c96 and JobDefinitionId=be628bfc-58bf-411f-9ff5-b45b836a3f82 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Update Job status to Running with id=b839c3e1-0b76-48db-a19b-9996f0814dba and JobDefinitionId=e49711ca-eabd-41e6-b63b-3efb12dfa922 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Create JobOutput with id=c0c101be-5243-4207-bab4-4b55b7656223 in partition JobId=2fce50f4-5f12-4883-9414-977d96279c96, clustering Date=06/18/2026 20:36:55 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos write Job b839c3e1-0b76-48db-a19b-9996f0814dba status -> PRIMARY (Session account default).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Cassandra write JobOutput c0c101be-5243-4207-bab4-4b55b7656223 -> PRIMARY (consistency=LocalOne).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=69029cc0-ddb3-42e0-bc47-070425042d84 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Cassandra read JobOutputs job=69029cc0-ddb3-42e0-bc47-070425042d84 -> PRIMARY (consistency=LocalQuorum).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=69029cc0-ddb3-42e0-bc47-070425042d84 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id c3cb77b7-3929-4742-aea2-60555710c55b started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Cassandra read JobOutputs job=69029cc0-ddb3-42e0-bc47-070425042d84 -> REPLICA (consistency=LocalOne).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id c98fb845-a76e-40eb-bc18-851a0c61e8c0 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] DocumentDB read JobDefinition c3cb77b7-3929-4742-aea2-60555710c55b -> REPLICA (consistency=Eventual/local).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] TryClaimNextExecution for JobDefinition c98fb845-a76e-40eb-bc18-851a0c61e8c0 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Update Job status to Running with id=706689d5-fada-4b14-9068-f551842d9a62 and JobDefinitionId=eb90ca5a-dd01-4c40-b993-40f3f1bb2899 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] DocumentDB write JobDefinition c98fb845-a76e-40eb-bc18-851a0c61e8c0 NextExecution -> PRIMARY (atomic findOneAndUpdate, w:majority; claim slot).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Update Job status to Succeeded with id=706689d5-fada-4b14-9068-f551842d9a62 and JobDefinitionId=eb90ca5a-dd01-4c40-b993-40f3f1bb2899 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos write Job 706689d5-fada-4b14-9068-f551842d9a62 status -> PRIMARY (Session account default).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id c3cb77b7-3929-4742-aea2-60555710c55b finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Update Job status to Succeeded with id=da7fda4a-ff76-4033-bce6-cc5da44e0258 and JobDefinitionId=968f49ce-98e4-4626-8b82-89fb0e6d3382 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Find Job by id=da7fda4a-ff76-4033-bce6-cc5da44e0258 and JobDefinitionId=968f49ce-98e4-4626-8b82-89fb0e6d3382 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Create JobOutput with id=36e7d43e-3d52-4ecd-b56b-887c17a400d9 in partition JobId=f3deca69-0800-4474-beb8-f0e1a6eede37, clustering Date=06/18/2026 20:36:55 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos read Job -> PRIMARY (Session via same client - read-your-writes).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=f3deca69-0800-4474-beb8-f0e1a6eede37 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Cassandra read JobOutputs job=f3deca69-0800-4474-beb8-f0e1a6eede37 -> PRIMARY (consistency=LocalQuorum).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=f3deca69-0800-4474-beb8-f0e1a6eede37 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Create JobOutput with id=c0c101be-5243-4207-bab4-4b55b7656223 in partition JobId=2fce50f4-5f12-4883-9414-977d96279c96, clustering Date=06/18/2026 20:36:55 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Update Job status to Running with id=b839c3e1-0b76-48db-a19b-9996f0814dba and JobDefinitionId=e49711ca-eabd-41e6-b63b-3efb12dfa922 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Cassandra read JobOutputs job=f3deca69-0800-4474-beb8-f0e1a6eede37 -> REPLICA (consistency=LocalOne).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=2fce50f4-5f12-4883-9414-977d96279c96 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Update Job status to Succeeded with id=b839c3e1-0b76-48db-a19b-9996f0814dba and JobDefinitionId=e49711ca-eabd-41e6-b63b-3efb12dfa922 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=69029cc0-ddb3-42e0-bc47-070425042d84 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Cassandra read JobOutputs job=2fce50f4-5f12-4883-9414-977d96279c96 -> PRIMARY (consistency=LocalQuorum).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos write Job b839c3e1-0b76-48db-a19b-9996f0814dba status -> PRIMARY (Session account default).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=2fce50f4-5f12-4883-9414-977d96279c96 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Cassandra read JobOutputs job=2fce50f4-5f12-4883-9414-977d96279c96 -> REPLICA (consistency=LocalOne).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Find Job by id=da7fda4a-ff76-4033-bce6-cc5da44e0258 and JobDefinitionId=968f49ce-98e4-4626-8b82-89fb0e6d3382 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] TryClaimNextExecution for JobDefinition c98fb845-a76e-40eb-bc18-851a0c61e8c0 -> WON the slot.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos read Job -> REPLICA (consistency=Eventual).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=69029cc0-ddb3-42e0-bc47-070425042d84 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id c3cb77b7-3929-4742-aea2-60555710c55b finished.
+dbug: Scheduler.BusinessLogic.Concrete.Handlers.ConsistencyDemos.ExecuteJobConsistencyDemoHandler[0] UC2.1 demo run 98: claim for c98fb845-a76e-40eb-bc18-851a0c61e8c0 -> True.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Update Job status to Succeeded with id=706689d5-fada-4b14-9068-f551842d9a62 and JobDefinitionId=eb90ca5a-dd01-4c40-b993-40f3f1bb2899 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id c98fb845-a76e-40eb-bc18-851a0c61e8c0 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Find Job by id=da7fda4a-ff76-4033-bce6-cc5da44e0258 and JobDefinitionId=968f49ce-98e4-4626-8b82-89fb0e6d3382 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Find Job by id=706689d5-fada-4b14-9068-f551842d9a62 and JobDefinitionId=eb90ca5a-dd01-4c40-b993-40f3f1bb2899 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos read Job -> PRIMARY (Session via same client - read-your-writes).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] DocumentDB read JobDefinition c98fb845-a76e-40eb-bc18-851a0c61e8c0 -> PRIMARY (primary read, default local; correctness from atomic claim).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=f3deca69-0800-4474-beb8-f0e1a6eede37 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] TryClaimNextExecution for JobDefinition c3cb77b7-3929-4742-aea2-60555710c55b started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] DocumentDB write JobDefinition c3cb77b7-3929-4742-aea2-60555710c55b NextExecution -> PRIMARY (atomic findOneAndUpdate, w:majority; claim slot).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id c98fb845-a76e-40eb-bc18-851a0c61e8c0 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Find Job by id=706689d5-fada-4b14-9068-f551842d9a62 and JobDefinitionId=eb90ca5a-dd01-4c40-b993-40f3f1bb2899 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=2fce50f4-5f12-4883-9414-977d96279c96 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Update Job status to Succeeded with id=b839c3e1-0b76-48db-a19b-9996f0814dba and JobDefinitionId=e49711ca-eabd-41e6-b63b-3efb12dfa922 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] DocumentDB read JobDefinition c98fb845-a76e-40eb-bc18-851a0c61e8c0 -> REPLICA (consistency=Eventual/local).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Find Job by id=b839c3e1-0b76-48db-a19b-9996f0814dba and JobDefinitionId=e49711ca-eabd-41e6-b63b-3efb12dfa922 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos read Job -> REPLICA (consistency=Eventual).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos read Job -> PRIMARY (Session via same client - read-your-writes).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=f3deca69-0800-4474-beb8-f0e1a6eede37 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=2fce50f4-5f12-4883-9414-977d96279c96 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Find Job by id=706689d5-fada-4b14-9068-f551842d9a62 and JobDefinitionId=eb90ca5a-dd01-4c40-b993-40f3f1bb2899 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Find Job by id=da7fda4a-ff76-4033-bce6-cc5da44e0258 and JobDefinitionId=968f49ce-98e4-4626-8b82-89fb0e6d3382 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Create JobOutput with id=b78beb95-eac4-4864-9bb9-5155106fc863 in partition JobId=da7fda4a-ff76-4033-bce6-cc5da44e0258, clustering Date=06/18/2026 20:36:55 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Cassandra write JobOutput b78beb95-eac4-4864-9bb9-5155106fc863 -> PRIMARY (consistency=LocalOne).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id c98fb845-a76e-40eb-bc18-851a0c61e8c0 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Find Job by id=b839c3e1-0b76-48db-a19b-9996f0814dba and JobDefinitionId=e49711ca-eabd-41e6-b63b-3efb12dfa922 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos read Job -> REPLICA (consistency=Eventual).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] TryClaimNextExecution for JobDefinition c3cb77b7-3929-4742-aea2-60555710c55b -> WON the slot.
+dbug: Scheduler.BusinessLogic.Concrete.Handlers.ConsistencyDemos.ExecuteJobConsistencyDemoHandler[0] UC2.1 demo run 99: claim for c3cb77b7-3929-4742-aea2-60555710c55b -> True.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id c3cb77b7-3929-4742-aea2-60555710c55b started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] DocumentDB read JobDefinition c3cb77b7-3929-4742-aea2-60555710c55b -> PRIMARY (primary read, default local; correctness from atomic claim).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id c3cb77b7-3929-4742-aea2-60555710c55b started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] DocumentDB read JobDefinition c3cb77b7-3929-4742-aea2-60555710c55b -> REPLICA (consistency=Eventual/local).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Find Job by id=b839c3e1-0b76-48db-a19b-9996f0814dba and JobDefinitionId=e49711ca-eabd-41e6-b63b-3efb12dfa922 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Find Job by id=706689d5-fada-4b14-9068-f551842d9a62 and JobDefinitionId=eb90ca5a-dd01-4c40-b993-40f3f1bb2899 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Create JobOutput with id=6fabc9b2-91df-4649-87d2-9310dcc55440 in partition JobId=706689d5-fada-4b14-9068-f551842d9a62, clustering Date=06/18/2026 20:36:55 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Cassandra write JobOutput 6fabc9b2-91df-4649-87d2-9310dcc55440 -> PRIMARY (consistency=LocalOne).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id c98fb845-a76e-40eb-bc18-851a0c61e8c0 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Create Job with id=327b2377-a9be-40c8-ba59-9ff1a8e4defd and JobDefinitionId=c98fb845-a76e-40eb-bc18-851a0c61e8c0 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos write Job 327b2377-a9be-40c8-ba59-9ff1a8e4defd -> PRIMARY (write-time unique key; consistency level N/A).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Create JobOutput with id=b78beb95-eac4-4864-9bb9-5155106fc863 in partition JobId=da7fda4a-ff76-4033-bce6-cc5da44e0258, clustering Date=06/18/2026 20:36:55 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=da7fda4a-ff76-4033-bce6-cc5da44e0258 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Cassandra read JobOutputs job=da7fda4a-ff76-4033-bce6-cc5da44e0258 -> PRIMARY (consistency=LocalQuorum).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=da7fda4a-ff76-4033-bce6-cc5da44e0258 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Cassandra read JobOutputs job=da7fda4a-ff76-4033-bce6-cc5da44e0258 -> REPLICA (consistency=LocalOne).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id c3cb77b7-3929-4742-aea2-60555710c55b finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Find Job by id=b839c3e1-0b76-48db-a19b-9996f0814dba and JobDefinitionId=e49711ca-eabd-41e6-b63b-3efb12dfa922 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Create JobOutput with id=66df6f07-5008-4437-9886-2c516d42e457 in partition JobId=b839c3e1-0b76-48db-a19b-9996f0814dba, clustering Date=06/18/2026 20:36:55 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Cassandra write JobOutput 66df6f07-5008-4437-9886-2c516d42e457 -> PRIMARY (consistency=LocalOne).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Create JobOutput with id=6fabc9b2-91df-4649-87d2-9310dcc55440 in partition JobId=706689d5-fada-4b14-9068-f551842d9a62, clustering Date=06/18/2026 20:36:55 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobDefinitionRepository[0] Find by id c3cb77b7-3929-4742-aea2-60555710c55b finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=706689d5-fada-4b14-9068-f551842d9a62 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Create Job with id=9f07de75-a862-445d-8327-9e96b8663a0b and JobDefinitionId=c3cb77b7-3929-4742-aea2-60555710c55b started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Cassandra read JobOutputs job=706689d5-fada-4b14-9068-f551842d9a62 -> PRIMARY (consistency=LocalQuorum).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos write Job 9f07de75-a862-445d-8327-9e96b8663a0b -> PRIMARY (write-time unique key; consistency level N/A).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=706689d5-fada-4b14-9068-f551842d9a62 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Cassandra read JobOutputs job=706689d5-fada-4b14-9068-f551842d9a62 -> REPLICA (consistency=LocalOne).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Create Job with id=327b2377-a9be-40c8-ba59-9ff1a8e4defd and JobDefinitionId=c98fb845-a76e-40eb-bc18-851a0c61e8c0 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Update Job status to Running with id=327b2377-a9be-40c8-ba59-9ff1a8e4defd and JobDefinitionId=c98fb845-a76e-40eb-bc18-851a0c61e8c0 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos write Job 327b2377-a9be-40c8-ba59-9ff1a8e4defd status -> PRIMARY (Session account default).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=da7fda4a-ff76-4033-bce6-cc5da44e0258 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Create JobOutput with id=66df6f07-5008-4437-9886-2c516d42e457 in partition JobId=b839c3e1-0b76-48db-a19b-9996f0814dba, clustering Date=06/18/2026 20:36:55 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=da7fda4a-ff76-4033-bce6-cc5da44e0258 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=b839c3e1-0b76-48db-a19b-9996f0814dba started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Cassandra read JobOutputs job=b839c3e1-0b76-48db-a19b-9996f0814dba -> PRIMARY (consistency=LocalQuorum).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=b839c3e1-0b76-48db-a19b-9996f0814dba started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Cassandra read JobOutputs job=b839c3e1-0b76-48db-a19b-9996f0814dba -> REPLICA (consistency=LocalOne).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=706689d5-fada-4b14-9068-f551842d9a62 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Create Job with id=9f07de75-a862-445d-8327-9e96b8663a0b and JobDefinitionId=c3cb77b7-3929-4742-aea2-60555710c55b finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Update Job status to Running with id=9f07de75-a862-445d-8327-9e96b8663a0b and JobDefinitionId=c3cb77b7-3929-4742-aea2-60555710c55b started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos write Job 9f07de75-a862-445d-8327-9e96b8663a0b status -> PRIMARY (Session account default).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=706689d5-fada-4b14-9068-f551842d9a62 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Update Job status to Running with id=327b2377-a9be-40c8-ba59-9ff1a8e4defd and JobDefinitionId=c98fb845-a76e-40eb-bc18-851a0c61e8c0 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Update Job status to Succeeded with id=327b2377-a9be-40c8-ba59-9ff1a8e4defd and JobDefinitionId=c98fb845-a76e-40eb-bc18-851a0c61e8c0 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos write Job 327b2377-a9be-40c8-ba59-9ff1a8e4defd status -> PRIMARY (Session account default).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=b839c3e1-0b76-48db-a19b-9996f0814dba finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=b839c3e1-0b76-48db-a19b-9996f0814dba finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Update Job status to Running with id=9f07de75-a862-445d-8327-9e96b8663a0b and JobDefinitionId=c3cb77b7-3929-4742-aea2-60555710c55b finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Update Job status to Succeeded with id=9f07de75-a862-445d-8327-9e96b8663a0b and JobDefinitionId=c3cb77b7-3929-4742-aea2-60555710c55b started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos write Job 9f07de75-a862-445d-8327-9e96b8663a0b status -> PRIMARY (Session account default).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Update Job status to Succeeded with id=327b2377-a9be-40c8-ba59-9ff1a8e4defd and JobDefinitionId=c98fb845-a76e-40eb-bc18-851a0c61e8c0 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Find Job by id=327b2377-a9be-40c8-ba59-9ff1a8e4defd and JobDefinitionId=c98fb845-a76e-40eb-bc18-851a0c61e8c0 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos read Job -> PRIMARY (Session via same client - read-your-writes).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Find Job by id=327b2377-a9be-40c8-ba59-9ff1a8e4defd and JobDefinitionId=c98fb845-a76e-40eb-bc18-851a0c61e8c0 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos read Job -> REPLICA (consistency=Eventual).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Update Job status to Succeeded with id=9f07de75-a862-445d-8327-9e96b8663a0b and JobDefinitionId=c3cb77b7-3929-4742-aea2-60555710c55b finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Find Job by id=9f07de75-a862-445d-8327-9e96b8663a0b and JobDefinitionId=c3cb77b7-3929-4742-aea2-60555710c55b started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos read Job -> PRIMARY (Session via same client - read-your-writes).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Find Job by id=327b2377-a9be-40c8-ba59-9ff1a8e4defd and JobDefinitionId=c98fb845-a76e-40eb-bc18-851a0c61e8c0 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Find Job by id=9f07de75-a862-445d-8327-9e96b8663a0b and JobDefinitionId=c3cb77b7-3929-4742-aea2-60555710c55b started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Cosmos read Job -> REPLICA (consistency=Eventual).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Find Job by id=327b2377-a9be-40c8-ba59-9ff1a8e4defd and JobDefinitionId=c98fb845-a76e-40eb-bc18-851a0c61e8c0 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Create JobOutput with id=218ae080-d650-4418-ac81-07603289272c in partition JobId=327b2377-a9be-40c8-ba59-9ff1a8e4defd, clustering Date=06/18/2026 20:36:56 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Cassandra write JobOutput 218ae080-d650-4418-ac81-07603289272c -> PRIMARY (consistency=LocalOne).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Find Job by id=9f07de75-a862-445d-8327-9e96b8663a0b and JobDefinitionId=c3cb77b7-3929-4742-aea2-60555710c55b finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobRepository[0] Find Job by id=9f07de75-a862-445d-8327-9e96b8663a0b and JobDefinitionId=c3cb77b7-3929-4742-aea2-60555710c55b finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Create JobOutput with id=dcff3d6a-f727-4099-887c-465762772e16 in partition JobId=9f07de75-a862-445d-8327-9e96b8663a0b, clustering Date=06/18/2026 20:36:56 started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Cassandra write JobOutput dcff3d6a-f727-4099-887c-465762772e16 -> PRIMARY (consistency=LocalOne).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Create JobOutput with id=218ae080-d650-4418-ac81-07603289272c in partition JobId=327b2377-a9be-40c8-ba59-9ff1a8e4defd, clustering Date=06/18/2026 20:36:56 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=327b2377-a9be-40c8-ba59-9ff1a8e4defd started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Cassandra read JobOutputs job=327b2377-a9be-40c8-ba59-9ff1a8e4defd -> PRIMARY (consistency=LocalQuorum).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=327b2377-a9be-40c8-ba59-9ff1a8e4defd started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Cassandra read JobOutputs job=327b2377-a9be-40c8-ba59-9ff1a8e4defd -> REPLICA (consistency=LocalOne).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Create JobOutput with id=dcff3d6a-f727-4099-887c-465762772e16 in partition JobId=9f07de75-a862-445d-8327-9e96b8663a0b, clustering Date=06/18/2026 20:36:56 finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=327b2377-a9be-40c8-ba59-9ff1a8e4defd finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=9f07de75-a862-445d-8327-9e96b8663a0b started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Cassandra read JobOutputs job=9f07de75-a862-445d-8327-9e96b8663a0b -> PRIMARY (consistency=LocalQuorum).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=9f07de75-a862-445d-8327-9e96b8663a0b started.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Cassandra read JobOutputs job=9f07de75-a862-445d-8327-9e96b8663a0b -> REPLICA (consistency=LocalOne).
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=327b2377-a9be-40c8-ba59-9ff1a8e4defd finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=9f07de75-a862-445d-8327-9e96b8663a0b finished.
+dbug: Scheduler.DataAccess.Azure.Repositories.JobOutputRepository[0] Find JobOutputs by partition JobId=9f07de75-a862-445d-8327-9e96b8663a0b finished.

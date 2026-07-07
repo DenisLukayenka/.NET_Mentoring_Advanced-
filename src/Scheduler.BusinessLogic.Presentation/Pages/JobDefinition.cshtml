@@ -1,0 +1,82 @@
+@page
+@model Scheduler.BusinessLogic.Presentation.Pages.JobDefinitionModel
+
+<h1>Granular handlers — Create &amp; read a Job Definition</h1>
+<p class="hint">Calls three granular handlers in sequence from the page:
+    <code>CreateJobDefinition</code> (Strong write) →
+    <code>GetJobDefinition</code> (primary read, read-your-writes) →
+    <code>GetJobDetail</code> (Eventual + primary fallback). The UI passes only
+    business fields; each handler picks its own consistency level.
+</p>
+
+<form method="post">
+    <label>Name <input name="Name" value="@Model.Name" /></label>
+    <label>Cron <input name="CronExpression" value="@Model.CronExpression" /></label>
+    <label>Detail type <input name="DetailType" value="@Model.DetailType" /></label>
+    <label>Payload <input name="Payload" value="@Model.Payload" /></label>
+    <button type="submit">Create &amp; read</button>
+</form>
+
+@if (Model.Created != null)
+{
+    <h2>Result</h2>
+    <div class="strip">
+        <span class="pill ok">Created</span>
+        <span class="pill neu">JobDefinitionId @Model.Created.JobDefinitionId</span>
+        <span class="pill neu">JobDetailId @Model.Created.JobDetailId</span>
+    </div>
+
+    <h3>JobDefinition (primary read)</h3>
+    @if (Model.Definition != null)
+    {
+        <table class="probe">
+            <tbody>
+                <tr>
+                    <th>Name</th>
+                    <td>@Model.Definition.Name</td>
+                </tr>
+                <tr>
+                    <th>Cron</th>
+                    <td class="mono">@Model.Definition.CronExpression</td>
+                </tr>
+                <tr>
+                    <th>Active</th>
+                    <td>@Model.Definition.Active</td>
+                </tr>
+                <tr>
+                    <th>NextExecutionDate</th>
+                    <td class="mono">@Model.Definition.NextExecutionDate.ToString("O")</td>
+                </tr>
+                <tr>
+                    <th>JobDetailId</th>
+                    <td class="mono">@Model.Definition.JobDetailId</td>
+                </tr>
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p class="hint">Definition not found — unexpected for a primary read.</p>
+    }
+
+    <h3>JobDetail (eventual + primary fallback)</h3>
+    @if (Model.Detail != null)
+    {
+        <table class="probe">
+            <tbody>
+                <tr>
+                    <th>Type</th>
+                    <td>@Model.Detail.Type</td>
+                </tr>
+                <tr>
+                    <th>Payload</th>
+                    <td class="mono">@Model.Detail.Payload</td>
+                </tr>
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p class="hint">Detail not found — replica missed and the primary fallback also missed.</p>
+    }
+}

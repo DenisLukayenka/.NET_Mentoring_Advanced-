@@ -1,0 +1,23 @@
+@page
+@model Scheduler.BusinessLogic.Presentation.Pages.IndexModel
+
+<h1>Scheduler — Consistency Demo</h1>
+<p class="hint">
+    Each handler chooses its own consistency level internally (per
+    <code>7_consistency/readme.md</code>). This UI passes only business fields — never a
+    consistency level or token. Watch the console for <code>PRIMARY/REPLICA</code> routing lines.
+</p>
+<ul>
+    <li><a asp-page="/CreateJob">UC 1.1 — Create a Job</a></li>
+    <li><a asp-page="/ExecuteJob">UC 2.1 — Execute a Job</a></li>
+</ul>
+
+<h2>Granular handler demos</h2>
+<p class="hint">Each page calls several granular handlers directly from the presentation
+    layer and shows what each returns.</p>
+    <ul>
+        <li><a asp-page="/JobDefinition">Create &amp; read a Job Definition</a> — CreateJobDefinition → GetJobDefinition →
+            GetJobDetail</li>
+            <li><a asp-page="/JobRun">Create &amp; read a Job Run</a> — CreateJobRun → GetJob → GetJobHistory</li>
+            <li><a asp-page="/JobOutputs">Append &amp; read Job Outputs</a> — AppendJobOutput → GetJobOutputs</li>
+        </ul>

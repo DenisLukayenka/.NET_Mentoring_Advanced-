@@ -1,0 +1,11 @@
+global using System;
+global using System.Collections.Generic;
+global using System.Linq;
+global using System.Threading;
+global using System.Threading.Tasks;
+global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.Extensions.Logging;
+global using Scheduler.BusinessLogic.Abstractions;
+global using Scheduler.DataAccess.Abstractions.Consistency;
+global using Scheduler.DataAccess.Abstractions.Repositories;
+global using Scheduler.Shared.Models;

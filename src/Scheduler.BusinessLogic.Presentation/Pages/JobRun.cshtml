@@ -1,0 +1,74 @@
+@page
+@model Scheduler.BusinessLogic.Presentation.Pages.JobRunModel
+
+<h1>Granular handlers — Create &amp; read a Job Run</h1>
+<p class="hint">Calls three granular handlers in sequence from the page:
+    <code>CreateJobRun</code> (write-time unique key) →
+    <code>GetJob</code> (Eventual read) →
+    <code>GetJobHistory</code> (Eventual read). Because the read-backs are
+    eventual, the just-created run may not be visible yet on the replica — that
+    replica-lag window is the Session/Eventual choice in action.
+</p>
+
+<form method="post">
+    <button type="submit">Create run &amp; read</button>
+</form>
+
+@if (Model.Created != null)
+{
+    <h2>Result</h2>
+    <div class="strip">
+        <span class="pill ok">Run created</span>
+        <span class="pill @(Model.Created.Duplicate ? "bad" : "neu")">@(Model.Created.Duplicate ? "Duplicate backstop fired" : "No duplicate")</span>
+        <span class="pill neu">JobId @Model.Created.JobId</span>
+    </div>
+
+    <h3>Job by id (eventual read)</h3>
+    @if (Model.Job != null)
+    {
+        <table class="probe">
+            <tbody>
+                <tr>
+                    <th>Status</th>
+                    <td>@Model.Job.Status</td>
+                </tr>
+                <tr>
+                    <th>ScheduledAt</th>
+                    <td class="mono">@Model.Job.ScheduledAt.ToString("O")</td>
+                </tr>
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p class="hint">Run not yet visible on the eventual read (replica lag) — expected within the lag window.</p>
+    }
+
+    <h3>Run history (eventual read)</h3>
+    @if (Model.History != null && Model.History.Jobs.Count > 0)
+    {
+        <table class="probe">
+            <thead>
+                <tr>
+                    <th>JobId</th>
+                    <th>Status</th>
+                    <th>ScheduledAt</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var j in Model.History.Jobs)
+                {
+                    <tr>
+                        <td class="mono">@j.Id</td>
+                        <td>@j.Status</td>
+                        <td class="mono">@j.ScheduledAt.ToString("O")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p class="hint">History empty on the eventual read (replica lag) — expected within the lag window.</p>
+    }
+}
